@@ -71,17 +71,13 @@ const login = async (req, res) => {
   // 이메일 확인
   const user = await findUserByEmail(email);
   if (!user) {
-    return res
-      .status(401)
-      .json({ message: "이메일 또는 비밀번호가 올바르지 않습니다." });
+    return res.status(401).json({ message: "존재하지 않는 이메일입니다." });
   }
 
   // 비밀번호 확인
   const isMatch = await bcrypt.compare(password, user.password);
   if (!isMatch) {
-    return res
-      .status(401)
-      .json({ message: "이메일 또는 비밀번호가 올바르지 않습니다." });
+    return res.status(401).json({ message: "비밀번호가 올바르지 않습니다." });
   }
 
   // JWT 토큰 발급
