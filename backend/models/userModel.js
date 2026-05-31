@@ -34,4 +34,17 @@ const createProfile = async (userId, nickname) => {
   ]);
 };
 
-module.exports = { findByEmail, findByNickname, createUser, createProfile };
+const findUserByEmail = async (email) => {
+  const [rows] = await pool.query("SELECT * FROM users WHERE email = ?", [
+    email,
+  ]);
+  return rows[0];
+};
+
+module.exports = {
+  findByEmail,
+  findByNickname,
+  createUser,
+  createProfile,
+  findUserByEmail,
+};

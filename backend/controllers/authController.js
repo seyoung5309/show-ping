@@ -1,4 +1,7 @@
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+
+// 회원 가입
 const {
   findByEmail,
   findByNickname,
@@ -52,4 +55,39 @@ const signup = async (req, res) => {
   res.status(201).json({ message: "회원가입이 완료되었습니다." });
 };
 
-module.exports = { checkNickname, signup };
+// 로그인
+const { findUserByEmail } = require("../models/userModel");
+
+const login = async (req, res) => {
+  const { email, password } = req.body;
+
+  // 필수 값 확인
+  if (!email || !password) {
+    return res
+      .status(400)
+      .json({ message: "이메일과 비밀번호를 입력해주세요." });
+  }
+
+  // 이메일 확인
+  const user = await findUserByEmail(email);
+  if (!user) {
+    return res.status(401).json({ message: "존재하지 않는 이메일입니다." });
+  }
+
+  // 비밀번호 확인
+  const isMatch = await bcrypt.compare(password, user.password);
+  if (!isMatch) {
+    return res.status(401).json({ message: "비밀번호가 올바르지 않습니다." });
+  }
+
+  // JWT 토큰 발급
+  const token = jwt.sign(
+    { id: user.id, email: user.email },
+    process.env.JWT_SECRET,
+    { expiresIn: "7d" },
+  );
+
+  res.status(200).json({ message: "로그인 성공", token });
+};
+
+module.exports = { checkNickname, signup, login };
