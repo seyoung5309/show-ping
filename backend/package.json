@@ -23,5 +23,8 @@
       "node": true,
       "commonjs": true
     }
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.1"
   }
 }
