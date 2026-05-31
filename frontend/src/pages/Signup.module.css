@@ -22,10 +22,7 @@ body {
     height: 874px;
 }
 
-/* ============================
-   레이아웃
-   ============================ */
-.main_body {
+.main {
     display: inline-flex;
     padding: 46px 48px 214px 47px;
     flex-direction: column;
@@ -33,145 +30,115 @@ body {
     gap: 118px;
 }
 
-.sub_body {
+.sub {
     display: flex;
     flex-direction: column;
+    gap: 37px;
     align-items: flex-start;
-    align-self: stretch;
-    gap: 12px;
 }
 
-.box_config {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
+.title {
+    color: #000;
+    font-family: Pretendard;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-bottom: 39px;
 }
 
-.nickname_row {
-    display: flex;
-    justify-content: space-between;
-    width: 307px;
-}
-
-/* ============================
-   로고
-   ============================ */
-.main_img {
+.logo_img {
     width: 111px;
     height: 43px;
     aspect-ratio: 111/43;
-    margin: 0px;
 }
 
-/* ============================
-   텍스트
-   ============================ */
-.main_title {
-    font-family: Pretendard;
-    font-size: 24px;
-    font-weight: 500;
+.boxs {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    align-self: stretch;
+}
+
+.text {
+    display: block;
     color: #000;
-    margin: 0 0 14px 0;
-}
-
-.main_text {
     font-family: Pretendard;
     font-size: 12px;
+    font-style: normal;
     font-weight: 400;
-    color: #000;
+    line-height: normal;
+    margin-bottom: 4px;
 }
 
-/* ============================
-   입력 박스
-   ============================ */
-.main_box,
-.main_box_name {
+.box_basic {
+    width: 297px;
     height: 45px;
     border-radius: 10px;
     border: 1px solid rgba(0, 0, 0, 0.20);
-    background: #fff;
+    background: #FFF;
 }
 
-.main_box {
-    width: 297px;
-}
-
-.main_box_name {
+.box_name {
     width: 210px;
-}
-
-/* ============================
-   버튼
-   ============================ */
-
-/* 공통 핑크 버튼 스타일 */
-.main_box_check,
-.main_box_signup,
-.modal_button {
+    height: 45px;
     border-radius: 10px;
-    border: 1px solid #FE679C;
-    background: #FFD2E2;
-    font-family: Pretendard;
-    font-size: 12px;
-    font-weight: 400;
-    color: #000;
+    border: 1px solid rgba(0, 0, 0, 0.20);
+    background: #FFF;
 }
 
-.main_box_check {
+.box_check {
     width: 78px;
     height: 45px;
+    border-radius: 10px;
+    border: 1px solid var(--_, #FE679C);
+    background: var(--_, #FFD2E2);
 }
 
-.main_box_signup {
+.name {
+    width: 307px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.signup {
     width: 307px;
     height: 45px;
-    margin: 25px 0 0 0;
-}
-
-.main_box_success {
-    width: 78px;
-    height: 45px;
     border-radius: 10px;
-    background: #d2f1c8;
+    border: 1px solid var(--_, #FE679C);
+    background: var(--_, #FFD2E2);
 }
 
-.modal_button {
-    border-radius: 2px;
-    padding: 8px 18px;
-    margin: 16px 0 0 0;
-}
-
-.main_box_text_login {
-    font-family: Pretendard;
-    font-size: 12px;
-    font-weight: 400;
-    color: #000;
-    border: 0;
-    background-color: white;
-}
-
-/* ============================
-   하단 텍스트 영역
-   ============================ */
-.main_box_text {
+.bottom {
     display: flex;
+    height: 14px;
     justify-content: space-between;
     align-items: center;
     margin: 10px 0 0 0;
 }
 
-.main_box_text_user {
+.bottom_text {
+    color: rgba(0, 0, 0, 0.50);
     font-family: Pretendard;
     font-size: 12px;
+    font-style: normal;
     font-weight: 400;
-    color: rgba(0, 0, 0, 0.50);
-    margin: -2px 0 0 0;
+    line-height: normal;
 }
 
-/* ============================
-   모달
-   ============================ */
+.bottom_login {
+    color: #000;
+    font-family: Pretendard;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    border: 0;
+    background-color: white;
+}
+
+/* 에러 메시지 팝업 */
 .overlay {
     position: fixed;
     top: 0;
@@ -183,17 +150,27 @@ body {
     align-items: center;
     justify-content: center;
     z-index: 999;
+    gap: 5px;
 }
 
 .modal_box {
-    width: 306px;
-    height: 100px;
+    background-color: #fff;
     padding: 24px;
     border-radius: 8px;
-    background-color: #fff;
+    text-align: center;
+    width: 306px;
+    height: 100px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    text-align: center;
+}
+
+.modal_button {
+    font-family: Pretendard;
+    background-color: #FFD2E2;
+    border-radius: 2px;
+    border: 1px solid var(--_, #FE679C);
+    padding: 8px 18px 8px 18px;
+    margin: 16px 0 0 0;
 }
