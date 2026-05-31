@@ -2,6 +2,5 @@
 
 School Database Programming Project
 
-브랜치 (git checkout)
-feat/back-signup
-feat/back-login
+프로젝트 명: Show Ping!
+기간: 2026.05.14 ~
