@@ -1,0 +1,176 @@
+/* ============================
+   전역 스타일
+   ============================ */
+button {
+    cursor: pointer;
+}
+
+input {
+    padding: 0 0 0 10px;
+}
+
+input::placeholder {
+    color: rgba(0, 0, 0, 0.50);
+    font-family: Pretendard;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+body {
+    justify-self: center;
+    width: 402px;
+    height: 874px;
+}
+
+.main {
+    display: inline-flex;
+    padding: 46px 48px 214px 47px;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 118px;
+}
+
+.sub {
+    display: flex;
+    flex-direction: column;
+    gap: 37px;
+    align-items: flex-start;
+}
+
+.title {
+    color: #000;
+    font-family: Pretendard;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-bottom: 39px;
+}
+
+.logo_img {
+    width: 111px;
+    height: 43px;
+    aspect-ratio: 111/43;
+}
+
+.boxs {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    align-self: stretch;
+}
+
+.text {
+    display: block;
+    color: #000;
+    font-family: Pretendard;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 4px;
+}
+
+.box_basic {
+    width: 297px;
+    height: 45px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.20);
+    background: #FFF;
+}
+
+.box_name {
+    width: 210px;
+    height: 45px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.20);
+    background: #FFF;
+}
+
+.box_check {
+    width: 78px;
+    height: 45px;
+    border-radius: 10px;
+    border: 1px solid var(--_, #FE679C);
+    background: var(--_, #FFD2E2);
+}
+
+.name {
+    width: 307px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.signup {
+    width: 307px;
+    height: 45px;
+    border-radius: 10px;
+    border: 1px solid var(--_, #FE679C);
+    background: var(--_, #FFD2E2);
+}
+
+.bottom {
+    display: flex;
+    height: 14px;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0 0 0;
+}
+
+.bottom_text {
+    color: rgba(0, 0, 0, 0.50);
+    font-family: Pretendard;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.bottom_login {
+    color: #000;
+    font-family: Pretendard;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    border: 0;
+    background-color: white;
+}
+
+/* 에러 메시지 팝업 */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    gap: 5px;
+}
+
+.modal_box {
+    background-color: #fff;
+    padding: 24px;
+    border-radius: 8px;
+    text-align: center;
+    width: 306px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal_button {
+    font-family: Pretendard;
+    background-color: #FFD2E2;
+    border-radius: 2px;
+    border: 1px solid var(--_, #FE679C);
+    padding: 8px 18px 8px 18px;
+    margin: 16px 0 0 0;
+}
