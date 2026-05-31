@@ -57,10 +57,10 @@ function Login() {
 
       <div>
         <button className={styles.main_box_login} onClick={handleLogin}>로그인</button>
-        <div className={styles.main_box_text}>
-            <label className={styles.main_box_text_notuser}>아직 회원이 아니라면?</label>
-            <button className={styles.main_box_text_signup} onClick={() => navigate("/signup")}>회원가입</button>
-        </div>
+            <div className={styles.main_box_text}>
+                <label className={styles.main_box_text_notuser}>아직 회원이 아니라면?</label>
+                <button className={styles.main_box_text_signup} onClick={() => navigate("/signup")}>회원가입</button>
+            </div>
       </div>
     </div>
   );
