@@ -1,0 +1,138 @@
+button {
+    cursor: pointer;
+}
+
+/* body */
+.main_body {
+    display: inline-flex;
+    padding: 248px 48px 213px 47px;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 32px;
+}
+
+/* logo 이미지 스타일 */
+.main_img {
+    width: 227px;
+    height: 88px;
+    aspect-ratio: 227/88;
+}
+
+/* 로그인, 비밀번호 텍스트 */
+.main_text {
+    color: #000;
+    font-family: Pretendard;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+/* 입력 박스 */
+.main_box {
+    width: 297px;
+    height: 45px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.20);
+    background: #FFF;
+}
+
+input {
+    padding: 0 0 0 10px;
+}
+
+input::placeholder {
+    color: rgba(0, 0, 0, 0.50);
+    font-family: Pretendard;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+/* 텍스트와 박스 연결 */
+.box_config {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: self-start;
+    gap: 4px;
+}
+
+/* 로그인 버튼 박스 */
+.main_box_login {
+    width: 307px;
+    height: 45px;
+    border-radius: 10px;
+    border: 1px solid var(--_, #FE679C);
+    background: #FFD2E2;
+    margin: 56px 0 0 0;
+}
+
+/* 회원이 아니라면?, 회원 가입 관련 div 스타일 */
+.main_box_text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0 0 0;
+}
+
+/* 회원이 아니라면? 텍스트 */
+.main_box_text_notuser {
+    color: rgba(0, 0, 0, 0.50);
+    font-family: Pretendard;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+/* 회원 가입 바로가기 버튼 */
+.main_box_text_signup {
+    color: #000;
+    font-family: Pretendard;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    border: 0;
+    background-color: white;
+}
+
+/* 에러 메시지 팝업 */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    gap: 5px;
+}
+
+.modal_box {
+    background-color: #fff;
+    padding: 24px;
+    border-radius: 8px;
+    text-align: center;
+    width: 306px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal_button {
+    font-family: Pretendard;
+    background-color: #FFD2E2;
+    border-radius: 2px;
+    border: 1px solid var(--_, #FE679C);
+    padding: 8px 18px 8px 18px;
+    margin: 16px 0 0 0;
+}
