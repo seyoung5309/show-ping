@@ -10,3 +10,10 @@ app.use("/api/auth", authRoutes);
 app.listen(3000, () => {
   console.log("서버 실행 중: http://localhost:3000");
 });
+
+const cors = require("cors");
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+  }),
+);
