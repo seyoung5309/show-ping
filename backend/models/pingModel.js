@@ -1,11 +1,31 @@
 const pool = require("../db");
 
 // 전체 목록 조회
-const findAllPings = async (userId) => {
-  const [rows] = await pool.query(
-    "SELECT * FROM pings WHERE user_id = ? ORDER BY created_at DESC",
-    [userId],
-  );
+const findAllPings = async (userId, search, categoryId) => {
+  let query = `
+    SELECT DISTINCT p.* FROM pings p
+  `;
+  const params = [userId];
+
+  if (categoryId) {
+    query += `JOIN category_with_ping cwp ON cwp.ping_id = p.id `;
+  }
+
+  query += `WHERE p.user_id = ? `;
+
+  if (search) {
+    query += `AND p.name LIKE ? `;
+    params.push(`%${search}%`);
+  }
+
+  if (categoryId) {
+    query += `AND cwp.category_id = ? `;
+    params.push(categoryId);
+  }
+
+  query += `ORDER BY p.created_at DESC`;
+
+  const [rows] = await pool.query(query, params);
   return rows;
 };
 

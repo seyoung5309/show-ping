@@ -9,7 +9,8 @@ const {
 
 // 전체 목록 조회
 const getPings = async (req, res) => {
-  const pings = await findAllPings(req.user.id);
+  const { search, categoryId } = req.query;
+  const pings = await findAllPings(req.user.id, search, categoryId);
   res.status(200).json(pings);
 };
 
