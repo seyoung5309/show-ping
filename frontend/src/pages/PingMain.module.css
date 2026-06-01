@@ -1,0 +1,16 @@
+button {
+    cursor: pointer;
+}
+
+body {
+    justify-self: center;
+    width: 402px;
+    height: 874px;
+}
+
+.logo_img {
+    width: 111px;
+    height: 43px;
+    flex-shrink: 0;
+    aspect-ratio: 111/43;
+}
