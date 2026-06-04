@@ -24,20 +24,22 @@ const getPing = async (req, res) => {
 
 // 추가
 const createPingController = async (req, res) => {
-  const { image, name, price, comment } = req.body;
+  const { name, price, comment } = req.body;
   if (!name || !price) {
     return res.status(400).json({ message: "이름과 가격은 필수입니다." });
   }
+  const image = req.file ? `/uploads/${req.file.filename}` : null;
   const id = await createPing(req.user.id, image, name, price, comment);
   res.status(201).json({ message: "상품이 추가되었습니다.", id });
 };
 
 // 수정
 const updatePingController = async (req, res) => {
-  const { image, name, price, comment } = req.body;
+  const { name, price, comment } = req.body;
   const ping = await findPingById(req.params.id, req.user.id);
   if (!ping)
     return res.status(404).json({ message: "상품을 찾을 수 없습니다." });
+  const image = req.file ? `/uploads/${req.file.filename}` : ping.image;
   await updatePing(req.params.id, req.user.id, image, name, price, comment);
   res.status(200).json({ message: "상품이 수정되었습니다." });
 };
