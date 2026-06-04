@@ -73,6 +73,13 @@ const getPingsInGroup = async (req, res) => {
   res.status(200).json(pings);
 };
 
+const getGroupController = async (req, res) => {
+  const group = await findGroupById(req.params.id, req.user.id);
+  if (!group)
+    return res.status(404).json({ message: "그룹을 찾을 수 없습니다." });
+  res.status(200).json(group);
+};
+
 module.exports = {
   getGroups,
   createGroup: createGroupController,
@@ -82,4 +89,5 @@ module.exports = {
   addPingToGroup: addPingToGroupController,
   removePingFromGroup: removePingFromGroupController,
   getPingsInGroup,
+  getGroup: getGroupController,
 };
