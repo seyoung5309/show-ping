@@ -1,5 +1,162 @@
+import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import {
+  getGroup,
+  getPingsInGroup,
+  getPings,
+  addPingToGroup,
+  removePingFromGroup,
+} from "../api/ping";
+import styles from "./PingGroup.module.css";
+import logo from "../assets/logo.png";
+import Hamburger from "../components/Hamburger";
+
 function PingGroup() {
-  return <div>PingGroup</div>;
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [group, setGroup] = useState(null);
+  const [groupPings, setGroupPings] = useState([]);
+  const [allPings, setAllPings] = useState([]);
+  const [search, setSearch] = useState("");
+  const [showSelect, setShowSelect] = useState(false);
+  const [selectedIds, setSelectedIds] = useState([]);
+  const [groupSearch, setGroupSearch] = useState("");
+
+  useEffect(() => {
+    fetchGroup();
+    fetchGroupPings();
+  }, []);
+
+  const fetchGroup = async () => {
+    const data = await getGroup(id);
+    setGroup(data);
+  };
+
+  const fetchGroupPings = async () => {
+    const data = await getPingsInGroup(id);
+    setGroupPings(data);
+    setSelectedIds(data.map((p) => p.id));
+  };
+
+  const fetchAllPings = async (s = "") => {
+    const data = await getPings(s);
+    setAllPings(data);
+  };
+
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+    fetchAllPings(e.target.value);
+  };
+
+  const handleOpenSelect = () => {
+    setShowSelect(true);
+    fetchAllPings();
+  };
+
+  const handleToggle = async (pingId) => {
+    if (selectedIds.includes(pingId)) {
+      await removePingFromGroup(id, pingId);
+      setSelectedIds(selectedIds.filter((i) => i !== pingId));
+      setGroupPings(groupPings.filter((p) => p.id !== pingId));
+    } else {
+      await addPingToGroup(id, pingId);
+      setSelectedIds([...selectedIds, pingId]);
+      const added = allPings.find((p) => p.id === pingId);
+      if (added) setGroupPings([...groupPings, added]);
+    }
+  };
+
+  const filteredGroupPings = groupPings.filter((p) =>
+    p.name.includes(groupSearch)
+  );
+
+  const handleGroupSearch = (e) => {
+    setGroupSearch(e.target.value);
+  };
+
+  return (
+    <div className={styles.page}>
+
+      {/* 헤더 */}
+      <div className={styles.header}>
+        <img className={styles.logo_img} src={logo} alt="Show Ping! 로고" />
+        <Hamburger />
+      </div>
+
+      {/* 검색창 */}
+      <div className={styles.search_wrap}>
+        <input
+            className={styles.search}
+            type="text"
+            placeholder="상품 검색"
+            value={groupSearch}
+            onChange={handleGroupSearch}
+        />
+        <span className={styles.search_icon}>🔍</span>
+      </div>
+
+      {/* 뒤로가기 + 그룹명 */}
+      <div className={styles.group_header}>
+        <button className={styles.back_btn} onClick={() => navigate("/main")}>
+          ← 뒤로가기
+        </button>
+        
+        <span className={styles.group_name}>{group?.name}</span>
+      </div>
+
+      {!showSelect ? (
+        <>
+          {/* 그룹 내 위시리스트 2열 그리드 */}
+            <div className={styles.ping_grid}>
+            {filteredGroupPings.map((p) => (
+                <div key={p.id} className={styles.ping_card} onClick={() => navigate(`/ping/update/${p.id}`)}>
+                {p.image
+                    ? <img src={`http://localhost:3000${p.image}`} alt={p.name} className={styles.ping_img} />
+                    : <div className={styles.ping_img} />
+                }
+                <div className={styles.ping_info}>
+                    <div className={styles.ping_row}>
+                    <span className={styles.ping_name}>{p.name}</span>
+                    <span className={styles.ping_price}>{p.price.toLocaleString()}원</span>
+                    </div>
+                    <p className={styles.ping_comment}>{p.comment}</p>
+                </div>
+                </div>
+            ))}
+            </div>
+
+          {/* 우측 하단 + 버튼 */}
+          <button className={styles.fab} onClick={handleOpenSelect}>+</button>
+        </>
+      ) : (
+        <>
+          {/* 위시리스트 선택 목록 */}
+          <div className={styles.select_list}>
+            {allPings.map((p) => (
+              <div key={p.id} className={styles.select_item}>
+                <div className={styles.select_info}>
+                  <span className={styles.ping_name}>{p.name}</span>
+                  <div className={styles.select_sub}>
+                    <span className={styles.ping_price}>{p.price.toLocaleString()}원</span>
+                    <span className={styles.ping_category}>{p.category}</span>
+                  </div>
+                </div>
+                <div
+                  className={`${styles.toggle} ${selectedIds.includes(p.id) ? styles.toggle_on : ""}`}
+                  onClick={() => handleToggle(p.id)}
+                >
+                  <div className={styles.toggle_circle} />
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* 뒤로가기 */}
+          <button className={styles.fab} onClick={() => setShowSelect(false)}>←</button>
+        </>
+      )}
+    </div>
+  );
 }
 
 export default PingGroup;
