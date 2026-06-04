@@ -115,13 +115,11 @@ const handlePropertyChange = (index, field, value) => {
     }
     console.log("pingId:", pingId);
     console.log("properties:", properties);
-    navigate("/main");
+    const navigate = useNavigate();
   };
 
   return (
     <div className={styles.page}>
-
-
 
       {/* 헤더 */}
       <div className={styles.header}>
@@ -129,7 +127,7 @@ const handlePropertyChange = (index, field, value) => {
         <Hamburger />
       </div>
       {/* 뒤로가기 */}
-      <button className={styles.back_btn} onClick={() => navigate("/main")}>
+      <button className={styles.back_btn} onClick={() => navigate(-1)}>
         ← 뒤로가기
       </button>
 

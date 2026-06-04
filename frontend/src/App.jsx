@@ -8,6 +8,9 @@ import Signup from "./pages/Signup";
 import PingMain from "./pages/PingMain";
 import PingGroup from "./pages/PingGroup";
 import PingAddUpdate from "./pages/PingAddUpdate";
+import Profile from "./pages/Profile";
+import SetFirst from "./pages/SetFirst";
+import SetSecond from "./pages/SetSecond";
 
 function App() {
   return (
@@ -19,6 +22,9 @@ function App() {
         <Route path="/group/:id" element={<PingGroup />} />
         <Route path="/ping/add" element={<PingAddUpdate />} />
         <Route path="/ping/update/:id" element={<PingAddUpdate />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/set-first" element={<SetFirst />} />
+        <Route path="/set-second" element={<SetSecond />} />
       </Routes>
     </BrowserRouter>
   );

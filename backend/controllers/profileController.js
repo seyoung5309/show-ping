@@ -1,3 +1,5 @@
+const pool = require("../db");
+
 const {
   findProfileByUserId,
   findCategoriesByUserId,
@@ -55,10 +57,22 @@ const getPublicGroups = async (req, res) => {
   res.status(200).json(groups);
 };
 
+const togglePublic = async (req, res) => {
+  const profile = await findProfileByUserId(req.user.id);
+  if (!profile)
+    return res.status(404).json({ message: "프로필을 찾을 수 없습니다." });
+  await pool.query(
+    "UPDATE profile SET is_public = NOT is_public WHERE user_id = ?",
+    [req.user.id],
+  );
+  res.status(200).json({ message: "공개 여부가 변경되었습니다." });
+};
+
 module.exports = {
   getProfile,
   updateProfile: updateProfileController,
   uploadProfileImage,
   getPublicPings,
   getPublicGroups,
+  togglePublic,
 };

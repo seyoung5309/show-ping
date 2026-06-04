@@ -1,0 +1,263 @@
+button {
+    cursor: pointer;
+}
+
+.page {
+    width: 402px;
+    min-height: 874px;
+    padding: 46px 21px 80px 21px;
+    box-sizing: border-box;
+}
+
+/* 헤더 */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.logo_img {
+    width: 111px;
+    height: 43px;
+    aspect-ratio: 111/43;
+}
+
+/* 프로필 섹션 */
+.profile_section {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.profile_img_wrap {
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.profile_img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #FE679C;
+}
+
+.profile_img_empty {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 2px solid #FE679C;
+    background: #FFD2E2;
+}
+
+.profile_info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+}
+
+.nickname {
+    font-family: Pretendard;
+    font-size: 20px;
+    font-weight: 600;
+    color: #000;
+    margin: 0;
+}
+
+.comment {
+    font-family: Pretendard;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.6);
+    margin: 0;
+    word-break: break-all;
+}
+
+.profile_meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.friends {
+    font-family: Pretendard;
+    font-size: 12px;
+    color: #000;
+    cursor: pointer;
+}
+
+.toggle_wrap {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.is_public {
+    font-family: Pretendard;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+/* 토글 */
+.toggle {
+    width: 36px;
+    height: 20px;
+    border-radius: 50px;
+    background: rgba(0, 0, 0, 0.2);
+    position: relative;
+    transition: background 0.2s;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.toggle_on {
+    background: #FE679C;
+}
+
+.toggle_circle {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #fff;
+    transition: left 0.2s;
+}
+
+.toggle_circle_on {
+    left: 18px;
+}
+
+/* 관심사 태그 */
+.categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+    cursor: pointer;
+}
+
+.category_tag {
+    padding: 6px 14px;
+    border-radius: 50px;
+    border: 1px solid #FE679C;
+    background: #FFD2E2;
+    font-family: Pretendard;
+    font-size: 12px;
+    color: #000;
+}
+
+/* 그룹 목록 */
+.group_wrap {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    overflow-x: auto;
+}
+
+.group_item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+.group_thumb {
+    width: 80px;
+    height: 50px;
+    border-radius: 10px;
+    border: 2px solid #FE679C;
+    background: #FFD2E2;
+    overflow: hidden;
+}
+
+.group_thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.group_add {
+    width: 80px;
+    height: 50px;
+    border-radius: 10px;
+    border: 2px solid #FE679C;
+    background: #FFD2E2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FE679C;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.group_name {
+    font-family: Pretendard;
+    font-size: 11px;
+    color: #000;
+    margin: 0;
+    text-align: center;
+}
+
+/* 위시리스트 그리드 */
+.ping_grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.ping_card {
+    border-radius: 10px;
+    border: 2px solid #FE679C;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.ping_img {
+    width: 100%;
+    height: 150px;
+    background: #FFD2E2;
+    object-fit: cover;
+}
+
+.ping_info {
+    padding: 8px 12px;
+    background: #FDFDFD;
+}
+
+.ping_row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.ping_name {
+    font-family: Pretendard;
+    font-size: 12px;
+    font-weight: 500;
+    color: #000;
+}
+
+.ping_price {
+    font-family: Pretendard;
+    font-size: 12px;
+    font-weight: 500;
+    color: #000;
+}
+
+.ping_comment {
+    font-family: Pretendard;
+    font-size: 10px;
+    color: rgba(0, 0, 0, 0.5);
+    margin: 0;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
