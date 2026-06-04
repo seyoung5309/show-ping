@@ -8,7 +8,15 @@ const {
   addCategoryToPing,
   deleteCategoryFromPing,
   findCategoryByPingId,
+  findPropertiesByPingId,
+  deletePropertiesByPingId,
 } = require("../models/pingModel");
+
+const {
+  findProperty,
+  createProperty,
+  addPingProperty,
+} = require("../models/propertyModel");
 
 // 전체 목록 조회
 const getPings = async (req, res) => {
@@ -23,9 +31,12 @@ const getPing = async (req, res) => {
   if (!ping)
     return res.status(404).json({ message: "상품을 찾을 수 없습니다." });
   const category = await findCategoryByPingId(req.params.id);
-  res
-    .status(200)
-    .json({ ...ping, categoryId: category ? category.category_id : null });
+  const properties = await findPropertiesByPingId(req.params.id);
+  res.status(200).json({
+    ...ping,
+    categoryId: category ? category.category_id : null,
+    properties,
+  });
 };
 
 // 추가
@@ -42,7 +53,7 @@ const createPingController = async (req, res) => {
 
 // 수정
 const updatePingController = async (req, res) => {
-  const { name, price, comment, categoryId, link } = req.body;
+  const { name, price, comment, categoryId, link, properties } = req.body;
   const ping = await findPingById(req.params.id, req.user.id);
   if (!ping)
     return res.status(404).json({ message: "상품을 찾을 수 없습니다." });
@@ -59,6 +70,20 @@ const updatePingController = async (req, res) => {
   if (categoryId) {
     await deleteCategoryFromPing(req.params.id);
     await addCategoryToPing(req.params.id, categoryId);
+  }
+  await deletePropertiesByPingId(req.params.id);
+  if (properties) {
+    const parsed = JSON.parse(properties);
+    for (const prop of parsed) {
+      if (prop.name && prop.value) {
+        let property = await findProperty(prop.name, prop.dataType);
+        if (!property) {
+          const id = await createProperty(prop.name, prop.dataType);
+          property = { id };
+        }
+        await addPingProperty(req.params.id, property.id, prop.value);
+      }
+    }
   }
   res.status(200).json({ message: "상품이 수정되었습니다." });
 };
