@@ -27,6 +27,9 @@ app.use("/api/categories", categoryRoutes);
 
 app.use("/uploads", express.static("uploads"));
 
+const profileRoutes = require("./routes/profileRoutes");
+app.use("/api/profile", profileRoutes);
+
 app.listen(3000, () => {
   console.log("서버 실행 중: http://localhost:3000");
 });
