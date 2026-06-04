@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const auth = require("../middleware/auth");
+const upload = require("../middleware/upload");
+
 const {
   getPings,
   getPing,
@@ -16,5 +18,7 @@ router.post("/", auth, createPing); // 추가
 router.put("/:id", auth, updatePing); // 수정
 router.delete("/:id", auth, deletePing); // 삭제
 router.patch("/:id/public", auth, togglePublic); // 공개/비공개
+router.post("/", auth, upload.single("image"), createPing);
+router.put("/:id", auth, upload.single("image"), updatePing);
 
 module.exports = router;

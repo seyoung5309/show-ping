@@ -25,6 +25,8 @@ app.use("/api/properties", propertyRoutes);
 const categoryRoutes = require("./routes/categoryRoutes");
 app.use("/api/categories", categoryRoutes);
 
+app.use("/uploads", express.static("uploads"));
+
 app.listen(3000, () => {
   console.log("서버 실행 중: http://localhost:3000");
 });

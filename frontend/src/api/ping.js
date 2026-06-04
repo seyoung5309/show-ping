@@ -43,3 +43,48 @@ export const getCategories = async () => {
   });
   return res.json();
 };
+
+export const getPing = async (id) => {
+  const res = await fetch(`${BASE_URL}/pings/${id}`, {
+    headers: { Authorization: `Bearer ${getToken()}` },
+  });
+  return res.json();
+};
+
+export const createPing = async (formData) => {
+  const res = await fetch(`${BASE_URL}/pings`, {
+    method: "POST",
+    headers: { Authorization: `Bearer ${getToken()}` },
+    body: formData,
+  });
+  return res.json();
+};
+
+export const updatePing = async (id, formData) => {
+  const res = await fetch(`${BASE_URL}/pings/${id}`, {
+    method: "PUT",
+    headers: { Authorization: `Bearer ${getToken()}` },
+    body: formData,
+  });
+  return res.json();
+};
+
+export const togglePublic = async (id) => {
+  const res = await fetch(`${BASE_URL}/pings/${id}/public`, {
+    method: "PATCH",
+    headers: { Authorization: `Bearer ${getToken()}` },
+  });
+  return res.json();
+};
+
+export const addProperty = async (pingId, name, dataType, value) => {
+  const res = await fetch(`${BASE_URL}/properties`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${getToken()}`,
+    },
+    body: JSON.stringify({ pingId, name, dataType, value }),
+  });
+  return res.json();
+};
