@@ -100,16 +100,19 @@ function PingMain() {
       {/* 위시리스트 목록 */}
       <div className={styles.ping_grid}>
         {pings.map((p) => (
-          <div key={p.id} className={styles.ping_card} onClick={() => navigate(`/ping/update/${p.id}`)}>
-            <div className={styles.ping_img}></div>
+            <div key={p.id} className={styles.ping_card} onClick={() => navigate(`/ping/update/${p.id}`)}>
+            {p.image
+                ? <img src={`http://localhost:3000${p.image}`} alt={p.name} className={styles.ping_img} />
+                : <div className={styles.ping_img}></div>
+            }
             <div className={styles.ping_info}>
-              <div className={styles.ping_row}>
+                <div className={styles.ping_row}>
                 <span className={styles.ping_name}>{p.name}</span>
                 <span className={styles.ping_price}>{p.price.toLocaleString()}원</span>
-              </div>
-              <p className={styles.ping_comment}>{p.comment}</p>
+                </div>
+                <p className={styles.ping_comment}>{p.comment}</p>
             </div>
-          </div>
+            </div>
         ))}
       </div>
 

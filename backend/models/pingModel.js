@@ -39,19 +39,19 @@ const findPingById = async (id, userId) => {
 };
 
 // 추가
-const createPing = async (userId, image, name, price, comment) => {
+const createPing = async (userId, image, name, price, comment, link) => {
   const [result] = await pool.query(
-    "INSERT INTO pings (user_id, image, name, price, comment) VALUES (?, ?, ?, ?, ?)",
-    [userId, image, name, price, comment],
+    "INSERT INTO pings (user_id, image, name, price, comment, link) VALUES (?, ?, ?, ?, ?, ?)",
+    [userId, image, name, price, comment, link],
   );
   return result.insertId;
 };
 
 // 수정
-const updatePing = async (id, userId, image, name, price, comment) => {
+const updatePing = async (id, userId, image, name, price, comment, link) => {
   await pool.query(
-    "UPDATE pings SET image = ?, name = ?, price = ?, comment = ? WHERE id = ? AND user_id = ?",
-    [image, name, price, comment, id, userId],
+    "UPDATE pings SET image = ?, name = ?, price = ?, comment = ?, link = ? WHERE id = ? AND user_id = ?",
+    [image, name, price, comment, link, id, userId],
   );
 };
 
@@ -71,6 +71,27 @@ const togglePublic = async (id, userId) => {
   );
 };
 
+const addCategoryToPing = async (pingId, categoryId) => {
+  await pool.query(
+    "INSERT INTO category_with_ping (ping_id, category_id) VALUES (?, ?)",
+    [pingId, categoryId],
+  );
+};
+
+const deleteCategoryFromPing = async (pingId) => {
+  await pool.query("DELETE FROM category_with_ping WHERE ping_id = ?", [
+    pingId,
+  ]);
+};
+
+const findCategoryByPingId = async (pingId) => {
+  const [rows] = await pool.query(
+    "SELECT category_id FROM category_with_ping WHERE ping_id = ?",
+    [pingId],
+  );
+  return rows[0];
+};
+
 module.exports = {
   findAllPings,
   findPingById,
@@ -78,4 +99,7 @@ module.exports = {
   updatePing,
   deletePing,
   togglePublic,
+  addCategoryToPing,
+  deleteCategoryFromPing,
+  findCategoryByPingId,
 };

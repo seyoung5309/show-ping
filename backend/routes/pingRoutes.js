@@ -12,13 +12,11 @@ const {
   togglePublic,
 } = require("../controllers/pingController");
 
-router.get("/", auth, getPings); // 전체 목록 조회
-router.get("/:id", auth, getPing); // 상세 조회
-router.post("/", auth, createPing); // 추가
-router.put("/:id", auth, updatePing); // 수정
-router.delete("/:id", auth, deletePing); // 삭제
-router.patch("/:id/public", auth, togglePublic); // 공개/비공개
+router.get("/", auth, getPings);
+router.get("/:id", auth, getPing);
 router.post("/", auth, upload.single("image"), createPing);
 router.put("/:id", auth, upload.single("image"), updatePing);
+router.delete("/:id", auth, deletePing);
+router.patch("/:id/public", auth, togglePublic);
 
 module.exports = router;
