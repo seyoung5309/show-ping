@@ -88,3 +88,37 @@ export const addProperty = async (pingId, name, dataType, value) => {
   });
   return res.json();
 };
+
+export const getGroup = async (id) => {
+  const res = await fetch(`${BASE_URL}/groups/${id}`, {
+    headers: { Authorization: `Bearer ${getToken()}` },
+  });
+  return res.json();
+};
+
+export const getPingsInGroup = async (groupId) => {
+  const res = await fetch(`${BASE_URL}/groups/${groupId}/pings`, {
+    headers: { Authorization: `Bearer ${getToken()}` },
+  });
+  return res.json();
+};
+
+export const addPingToGroup = async (groupId, pingId) => {
+  const res = await fetch(`${BASE_URL}/groups/${groupId}/pings`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${getToken()}`,
+    },
+    body: JSON.stringify({ pingId }),
+  });
+  return res.json();
+};
+
+export const removePingFromGroup = async (groupId, pingId) => {
+  const res = await fetch(`${BASE_URL}/groups/${groupId}/pings/${pingId}`, {
+    method: "DELETE",
+    headers: { Authorization: `Bearer ${getToken()}` },
+  });
+  return res.json();
+};
