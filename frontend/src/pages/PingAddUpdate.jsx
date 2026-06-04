@@ -42,7 +42,7 @@ function PingAddUpdate() {
     setCategories(data);
   };
 
-  const fetchPing = async () => {
+    const fetchPing = async () => {
     const data = await getPing(id);
     setName(data.name || "");
     setPrice(data.price || "");
@@ -50,8 +50,11 @@ function PingAddUpdate() {
     setLink(data.link || "");
     setIsPublic(data.is_public === 1);
     setImagePreview(data.image ? `http://localhost:3000${data.image}` : null);
-    if (data.categoryId) setCategoryId(data.categoryId); // ← 추가
-  };
+    if (data.categoryId) setCategoryId(data.categoryId);
+    if (data.properties && data.properties.length > 0) {
+        setProperties(data.properties);
+    }
+    };
 
   const handleImage = (e) => {
     const file = e.target.files[0];
@@ -90,7 +93,8 @@ const handlePropertyChange = (index, field, value) => {
     formData.append("name", name);
     formData.append("price", price);
     formData.append("comment", comment);
-      formData.append("link", link); 
+    formData.append("link", link); 
+    formData.append("properties", JSON.stringify(properties));
     if (categoryId) formData.append("categoryId", categoryId);
     if (image) formData.append("image", image);
 
@@ -106,7 +110,7 @@ const handlePropertyChange = (index, field, value) => {
     for (const prop of properties) {
         if (prop.name && prop.value) {
             const result = await addProperty(pingId, prop.name, prop.dataType, prop.value);
-            console.log("속성 저장 결과:", result); // 추가
+            console.log("!!속성 저장 결과:", result); 
         }
     }
     console.log("pingId:", pingId);

@@ -21,8 +21,10 @@ const createProperty = async (name, dataType) => {
 // 상품에 속성 값 추가
 const addPingProperty = async (pingId, propertyId, value) => {
   await pool.query(
-    "INSERT INTO ping_property (ping_id, property_id, value) VALUES (?, ?, ?)",
-    [pingId, propertyId, value],
+    `INSERT INTO ping_property (ping_id, property_id, value)
+     VALUES (?, ?, ?)
+     ON DUPLICATE KEY UPDATE value = ?`,
+    [pingId, propertyId, value, value],
   );
 };
 

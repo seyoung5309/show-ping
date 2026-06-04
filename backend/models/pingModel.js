@@ -92,6 +92,21 @@ const findCategoryByPingId = async (pingId) => {
   return rows[0];
 };
 
+const findPropertiesByPingId = async (pingId) => {
+  const [rows] = await pool.query(
+    `SELECT pp.value, p.name, p.data_type as dataType
+     FROM ping_property pp
+     JOIN property p ON p.id = pp.property_id
+     WHERE pp.ping_id = ?`,
+    [pingId],
+  );
+  return rows;
+};
+
+const deletePropertiesByPingId = async (pingId) => {
+  await pool.query("DELETE FROM ping_property WHERE ping_id = ?", [pingId]);
+};
+
 module.exports = {
   findAllPings,
   findPingById,
@@ -102,4 +117,6 @@ module.exports = {
   addCategoryToPing,
   deleteCategoryFromPing,
   findCategoryByPingId,
+  findPropertiesByPingId,
+  deletePropertiesByPingId,
 };
