@@ -20,6 +20,7 @@ function PingGroup() {
   const [search, setSearch] = useState("");
   const [showSelect, setShowSelect] = useState(false);
   const [selectedIds, setSelectedIds] = useState([]);
+  const [groupSearch, setGroupSearch] = useState("");
 
   useEffect(() => {
     fetchGroup();
@@ -65,6 +66,14 @@ function PingGroup() {
     }
   };
 
+  const filteredGroupPings = groupPings.filter((p) =>
+    p.name.includes(groupSearch)
+  );
+
+  const handleGroupSearch = (e) => {
+    setGroupSearch(e.target.value);
+  };
+
   return (
     <div className={styles.page}>
 
@@ -77,11 +86,11 @@ function PingGroup() {
       {/* 검색창 */}
       <div className={styles.search_wrap}>
         <input
-          className={styles.search}
-          type="text"
-          placeholder="상품 검색"
-          value={search}
-          onChange={handleSearch}
+            className={styles.search}
+            type="text"
+            placeholder="상품 검색"
+            value={groupSearch}
+            onChange={handleGroupSearch}
         />
         <span className={styles.search_icon}>🔍</span>
       </div>
@@ -91,29 +100,30 @@ function PingGroup() {
         <button className={styles.back_btn} onClick={() => navigate("/main")}>
           ← 뒤로가기
         </button>
+        
         <span className={styles.group_name}>{group?.name}</span>
       </div>
 
       {!showSelect ? (
         <>
           {/* 그룹 내 위시리스트 2열 그리드 */}
-          <div className={styles.ping_grid}>
-            {groupPings.map((p) => (
-              <div key={p.id} className={styles.ping_card} onClick={() => navigate(`/ping/update/${p.id}`)}>
+            <div className={styles.ping_grid}>
+            {filteredGroupPings.map((p) => (
+                <div key={p.id} className={styles.ping_card} onClick={() => navigate(`/ping/update/${p.id}`)}>
                 {p.image
-                  ? <img src={`http://localhost:3000${p.image}`} alt={p.name} className={styles.ping_img} />
-                  : <div className={styles.ping_img} />
+                    ? <img src={`http://localhost:3000${p.image}`} alt={p.name} className={styles.ping_img} />
+                    : <div className={styles.ping_img} />
                 }
                 <div className={styles.ping_info}>
-                  <div className={styles.ping_row}>
+                    <div className={styles.ping_row}>
                     <span className={styles.ping_name}>{p.name}</span>
                     <span className={styles.ping_price}>{p.price.toLocaleString()}원</span>
-                  </div>
-                  <p className={styles.ping_comment}>{p.comment}</p>
+                    </div>
+                    <p className={styles.ping_comment}>{p.comment}</p>
                 </div>
-              </div>
+                </div>
             ))}
-          </div>
+            </div>
 
           {/* 우측 하단 + 버튼 */}
           <button className={styles.fab} onClick={handleOpenSelect}>+</button>
