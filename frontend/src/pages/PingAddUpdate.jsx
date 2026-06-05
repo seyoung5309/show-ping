@@ -115,7 +115,7 @@ const handlePropertyChange = (index, field, value) => {
     }
     console.log("pingId:", pingId);
     console.log("properties:", properties);
-    const navigate = useNavigate();
+    const navigate = navigate("/main");
   };
 
   return (

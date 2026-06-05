@@ -11,6 +11,9 @@ const {
   findPublicGroupsByUserId,
 } = require("../models/profileModel");
 
+const fs = require("fs");
+const path = require("path");
+
 // 프로필 조회
 const getProfile = async (req, res) => {
   const profile = await findProfileByUserId(req.user.id);
@@ -40,6 +43,16 @@ const updateProfileController = async (req, res) => {
 const uploadProfileImage = async (req, res) => {
   if (!req.file)
     return res.status(400).json({ message: "이미지를 업로드해주세요." });
+
+  // 기존 이미지 삭제
+  const profile = await findProfileByUserId(req.user.id);
+  if (profile.image) {
+    const oldPath = path.join(__dirname, "..", profile.image);
+    if (fs.existsSync(oldPath)) {
+      fs.unlinkSync(oldPath);
+    }
+  }
+
   const image = `/uploads/${req.file.filename}`;
   await updateProfileImage(req.user.id, image);
   res.status(200).json({ message: "프로필 이미지가 업로드되었습니다.", image });
