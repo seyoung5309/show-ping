@@ -81,6 +81,19 @@ const togglePublic = async (req, res) => {
   res.status(200).json({ message: "공개 여부가 변경되었습니다." });
 };
 
+// 다른 사용자 프로필 조회
+const getUserProfile = async (req, res) => {
+  const profile = await findProfileByUserId(req.params.userId);
+  if (!profile)
+    return res.status(404).json({ message: "프로필을 찾을 수 없습니다." });
+  if (!profile.is_public)
+    return res.status(403).json({ message: "비공개 프로필입니다." });
+  const categories = await findCategoriesByUserId(req.params.userId);
+  const pings = await findPublicPingsByUserId(req.params.userId);
+  const groups = await findPublicGroupsByUserId(req.params.userId);
+  res.status(200).json({ ...profile, categories, pings, groups });
+};
+
 module.exports = {
   getProfile,
   updateProfile: updateProfileController,
@@ -88,4 +101,5 @@ module.exports = {
   getPublicPings,
   getPublicGroups,
   togglePublic,
+  getUserProfile,
 };

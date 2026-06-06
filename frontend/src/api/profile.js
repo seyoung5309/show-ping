@@ -54,3 +54,10 @@ export const togglePublic = async () => {
   });
   return res.json();
 };
+
+export const getUserProfile = async (userId) => {
+  const res = await fetch(`${BASE_URL}/profile/${userId}`, {
+    headers: { Authorization: `Bearer ${getToken()}` },
+  });
+  return res.json();
+};

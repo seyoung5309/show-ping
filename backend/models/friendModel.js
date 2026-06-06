@@ -106,6 +106,10 @@ const countFriends = async (userId) => {
   return rows[0].count;
 };
 
+const deleteFriendRequest = async (requestId) => {
+  await pool.query("DELETE FROM friends_request WHERE id = ?", [requestId]);
+};
+
 module.exports = {
   findAllFriends,
   findFriendRequests,
@@ -117,4 +121,5 @@ module.exports = {
   addFriend,
   deleteFriend,
   countFriends,
+  deleteFriendRequest,
 };

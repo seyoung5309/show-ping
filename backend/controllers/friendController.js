@@ -8,6 +8,7 @@ const {
   updateFriendRequest,
   addFriend,
   deleteFriend,
+  deleteFriendRequest,
 } = require("../models/friendModel");
 
 // 친구 목록 조회
@@ -53,19 +54,20 @@ const handleFriendRequest = async (req, res) => {
   const requestId = req.params.id;
 
   if (action === "승인") {
-    const [request] = await require("../db").query(
+    const [rows] = await require("../db").query(
       "SELECT * FROM friends_request WHERE id = ?",
       [requestId],
     );
+    const request = rows[0];
     if (!request)
       return res.status(404).json({ message: "요청을 찾을 수 없습니다." });
-    await updateFriendRequest(requestId, "승인");
     await addFriend(request.user_id, request.friend_id);
+    await deleteFriendRequest(requestId);
     return res.status(200).json({ message: "친구 요청을 승인했습니다." });
   }
 
   if (action === "거절") {
-    await updateFriendRequest(requestId, "거절");
+    await deleteFriendRequest(requestId);
     return res.status(200).json({ message: "친구 요청을 거절했습니다." });
   }
 

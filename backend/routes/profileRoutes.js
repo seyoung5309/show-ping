@@ -9,13 +9,15 @@ const {
   getPublicPings,
   getPublicGroups,
   togglePublic,
+  getUserProfile,
 } = require("../controllers/profileController");
 
 router.get("/", auth, getProfile);
 router.put("/", auth, updateProfile);
 router.post("/image", auth, upload.single("image"), uploadProfileImage);
+router.patch("/public", auth, togglePublic);
 router.get("/pings", auth, getPublicPings);
 router.get("/groups", auth, getPublicGroups);
-router.patch("/public", auth, togglePublic);
+router.get("/:userId", auth, getUserProfile);
 
 module.exports = router;
