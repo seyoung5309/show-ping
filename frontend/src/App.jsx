@@ -11,6 +11,8 @@ import PingAddUpdate from "./pages/PingAddUpdate";
 import Profile from "./pages/Profile";
 import SetFirst from "./pages/SetFirst";
 import SetSecond from "./pages/SetSecond";
+import Friends from "./pages/Friends";
+import UserProfile from "./pages/UserProfile";
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/set-first" element={<SetFirst />} />
         <Route path="/set-second" element={<SetSecond />} />
+        <Route path="/friends" element={<Friends />} />
+        <Route path="/profile/:userId" element={<UserProfile />} />
       </Routes>
     </BrowserRouter>
   );

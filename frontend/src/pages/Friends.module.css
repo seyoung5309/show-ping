@@ -1,0 +1,251 @@
+button {
+    cursor: pointer;
+}
+
+input::placeholder {
+    color: rgba(0, 0, 0, 0.50);
+    font-family: Pretendard;
+    font-size: 12px;
+}
+
+.page {
+    width: 402px;
+    min-height: 874px;
+    padding: 46px 21px 80px 21px;
+    box-sizing: border-box;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.logo_img {
+    width: 111px;
+    height: 43px;
+    aspect-ratio: 111/43;
+}
+
+.title_row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.back_btn {
+    background: none;
+    border: none;
+    font-family: Pretendard;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.5);
+    padding: 0;
+}
+
+.title {
+    font-family: Pretendard;
+    font-size: 16px;
+    font-weight: 600;
+    color: #000;
+}
+
+/* 검색창 */
+.search_wrap {
+    position: relative;
+    margin-bottom: 16px;
+}
+
+.search {
+    width: 100%;
+    height: 35px;
+    border-radius: 50px;
+    border: 2px solid #FE679C;
+    background: #FFEFF5;
+    padding: 0 40px 0 16px;
+    font-family: Pretendard;
+    font-size: 12px;
+    box-sizing: border-box;
+}
+
+.search_icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+}
+
+/* 친구 추가/요청 버튼 */
+.mode_row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.mode_btn {
+    background: none;
+    border: none;
+    font-family: Pretendard;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.5);
+    padding: 0;
+}
+
+/* 유저 목록 */
+.user_list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.user_item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.user_img_wrap {
+    flex-shrink: 0;
+}
+
+.user_img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #FE679C;
+}
+
+.user_img_empty {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid #FE679C;
+    background: #FFD2E2;
+}
+
+.user_info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.user_name {
+    font-family: Pretendard;
+    font-size: 14px;
+    font-weight: 500;
+    color: #000;
+    margin: 0;
+}
+
+.user_comment {
+    font-family: Pretendard;
+    font-size: 11px;
+    color: rgba(0, 0, 0, 0.5);
+    margin: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 180px;
+}
+
+/* 버튼들 */
+.request_btns {
+    display: flex;
+    gap: 6px;
+}
+
+.reject_btn {
+    padding: 6px 12px;
+    border-radius: 50px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background: #fff;
+    font-family: Pretendard;
+    font-size: 11px;
+    color: #000;
+}
+
+.accept_btn {
+    padding: 6px 12px;
+    border-radius: 50px;
+    border: 1px solid #FE679C;
+    background: #FFD2E2;
+    font-family: Pretendard;
+    font-size: 11px;
+    color: #000;
+}
+
+.add_btn {
+    padding: 6px 12px;
+    border-radius: 50px;
+    border: 1px solid #FE679C;
+    background: #FFD2E2;
+    font-family: Pretendard;
+    font-size: 11px;
+    color: #000;
+    white-space: nowrap;
+}
+
+.delete_btn {
+    padding: 6px 12px;
+    border-radius: 50px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background: #fff;
+    font-family: Pretendard;
+    font-size: 11px;
+    color: rgba(0, 0, 0, 0.5);
+    white-space: nowrap;
+}
+
+.status_tag {
+    font-family: Pretendard;
+    font-size: 11px;
+    color: rgba(0, 0, 0, 0.5);
+    white-space: nowrap;
+}
+
+.empty {
+    font-family: Pretendard;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+    margin-top: 40px;
+}
+
+/* 모달 */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.modal {
+    width: 306px;
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+}
+
+.modal_btn {
+    padding: 8px 24px;
+    border-radius: 8px;
+    border: 1px solid #FE679C;
+    background: #FFD2E2;
+    font-family: Pretendard;
+    font-size: 12px;
+}
