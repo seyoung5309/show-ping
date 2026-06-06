@@ -109,9 +109,7 @@ const deletePingController = async (req, res) => {
   // 이미지 삭제
   if (ping.image) {
     const oldPath = path.join(__dirname, "..", ping.image);
-    if (fs.existsSync(oldPath)) {
-      fs.unlinkSync(oldPath);
-    }
+    if (fs.existsSync(oldPath)) fs.unlinkSync(oldPath);
   }
 
   await deletePing(req.params.id, req.user.id);

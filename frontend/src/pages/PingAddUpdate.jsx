@@ -42,7 +42,7 @@ function PingAddUpdate() {
     setCategories(data);
   };
 
-    const fetchPing = async () => {
+  const fetchPing = async () => {
     const data = await getPing(id);
     setName(data.name || "");
     setPrice(data.price || "");
@@ -52,9 +52,9 @@ function PingAddUpdate() {
     setImagePreview(data.image ? `http://localhost:3000${data.image}` : null);
     if (data.categoryId) setCategoryId(data.categoryId);
     if (data.properties && data.properties.length > 0) {
-        setProperties(data.properties);
+      setProperties(data.properties);
     }
-    };
+  };
 
   const handleImage = (e) => {
     const file = e.target.files[0];
@@ -67,12 +67,11 @@ function PingAddUpdate() {
     setProperties([...properties, { name: "", dataType: "text", value: "" }]);
   };
 
-const handlePropertyChange = (index, field, value) => {
-    console.log("변경:", index, field, value); // 추가
+  const handlePropertyChange = (index, field, value) => {
     const updated = [...properties];
     updated[index][field] = value;
     setProperties(updated);
-};
+  };
 
   const handleTogglePublic = async () => {
     if (isEdit) await togglePublic(id);
@@ -82,40 +81,45 @@ const handlePropertyChange = (index, field, value) => {
   const handleDelete = async () => {
     if (!isEdit) return;
     await deletePing(id);
-    navigate("/main");
+    navigate(-1);
   };
 
   const handleSubmit = async () => {
     if (!name) return setModal("상품명을 입력해주세요.");
     if (!price) return setModal("가격을 입력해주세요.");
 
-    const formData = new FormData();
-    formData.append("name", name);
-    formData.append("price", price);
-    formData.append("comment", comment);
-    formData.append("link", link); 
-    formData.append("properties", JSON.stringify(properties));
-    if (categoryId) formData.append("categoryId", categoryId);
-    if (image) formData.append("image", image);
+    try {
+      const formData = new FormData();
+      formData.append("name", name);
+      formData.append("price", price);
+      formData.append("comment", comment);
+      formData.append("link", link);
+      formData.append("properties", JSON.stringify(properties));
+      if (categoryId) formData.append("categoryId", categoryId);
+      if (image) formData.append("image", image);
 
-    let pingId = id;
-    if (isEdit) {
-      await updatePing(id, formData);
-    } else {
-      const data = await createPing(formData);
-      pingId = data.id;
-    }
+      let pingId = id;
+      if (isEdit) {
+        await updatePing(id, formData);
+      } else {
+        const data = await createPing(formData);
+        pingId = data.id;
+      }
 
-    // 속성 추가
-    for (const prop of properties) {
-        if (prop.name && prop.value) {
-            const result = await addProperty(pingId, prop.name, prop.dataType, prop.value);
-            console.log("!!속성 저장 결과:", result); 
+      // 속성 추가 (신규일 때만)
+      if (!isEdit) {
+        for (const prop of properties) {
+          if (prop.name && prop.value) {
+            await addProperty(pingId, prop.name, prop.dataType, prop.value);
+          }
         }
+      }
+
+      navigate(-1);
+    } catch (err) {
+      console.error(err);
+      setModal("오류가 발생했습니다. 다시 시도해주세요.");
     }
-    console.log("pingId:", pingId);
-    console.log("properties:", properties);
-    const navigate = navigate("/main");
   };
 
   return (
@@ -126,6 +130,7 @@ const handlePropertyChange = (index, field, value) => {
         <img className={styles.logo_img} src={logo} alt="Show Ping! 로고" />
         <Hamburger />
       </div>
+
       {/* 뒤로가기 */}
       <button className={styles.back_btn} onClick={() => navigate(-1)}>
         ← 뒤로가기
