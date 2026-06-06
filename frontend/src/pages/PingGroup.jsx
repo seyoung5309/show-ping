@@ -97,7 +97,7 @@ function PingGroup() {
 
       {/* 뒤로가기 + 그룹명 */}
       <div className={styles.group_header}>
-        <button className={styles.back_btn} onClick={() => navigate("/main")}>
+        <button className={styles.back_btn} onClick={() => navigate(-1)}>
           ← 뒤로가기
         </button>
         

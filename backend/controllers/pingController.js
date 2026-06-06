@@ -18,6 +18,9 @@ const {
   addPingProperty,
 } = require("../models/propertyModel");
 
+const fs = require("fs");
+const path = require("path");
+
 // 전체 목록 조회
 const getPings = async (req, res) => {
   const { search, categoryId } = req.query;
@@ -57,6 +60,15 @@ const updatePingController = async (req, res) => {
   const ping = await findPingById(req.params.id, req.user.id);
   if (!ping)
     return res.status(404).json({ message: "상품을 찾을 수 없습니다." });
+
+  // 기존 이미지 삭제
+  if (req.file && ping.image) {
+    const oldPath = path.join(__dirname, "..", ping.image);
+    if (fs.existsSync(oldPath)) {
+      fs.unlinkSync(oldPath);
+    }
+  }
+
   const image = req.file ? `/uploads/${req.file.filename}` : ping.image;
   await updatePing(
     req.params.id,
@@ -93,6 +105,13 @@ const deletePingController = async (req, res) => {
   const ping = await findPingById(req.params.id, req.user.id);
   if (!ping)
     return res.status(404).json({ message: "상품을 찾을 수 없습니다." });
+
+  // 이미지 삭제
+  if (ping.image) {
+    const oldPath = path.join(__dirname, "..", ping.image);
+    if (fs.existsSync(oldPath)) fs.unlinkSync(oldPath);
+  }
+
   await deletePing(req.params.id, req.user.id);
   res.status(200).json({ message: "상품이 삭제되었습니다." });
 };

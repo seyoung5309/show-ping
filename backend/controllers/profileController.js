@@ -1,3 +1,5 @@
+const pool = require("../db");
+
 const {
   findProfileByUserId,
   findCategoriesByUserId,
@@ -8,6 +10,9 @@ const {
   findPublicPingsByUserId,
   findPublicGroupsByUserId,
 } = require("../models/profileModel");
+
+const fs = require("fs");
+const path = require("path");
 
 // 프로필 조회
 const getProfile = async (req, res) => {
@@ -38,6 +43,16 @@ const updateProfileController = async (req, res) => {
 const uploadProfileImage = async (req, res) => {
   if (!req.file)
     return res.status(400).json({ message: "이미지를 업로드해주세요." });
+
+  // 기존 이미지 삭제
+  const profile = await findProfileByUserId(req.user.id);
+  if (profile.image) {
+    const oldPath = path.join(__dirname, "..", profile.image);
+    if (fs.existsSync(oldPath)) {
+      fs.unlinkSync(oldPath);
+    }
+  }
+
   const image = `/uploads/${req.file.filename}`;
   await updateProfileImage(req.user.id, image);
   res.status(200).json({ message: "프로필 이미지가 업로드되었습니다.", image });
@@ -55,10 +70,22 @@ const getPublicGroups = async (req, res) => {
   res.status(200).json(groups);
 };
 
+const togglePublic = async (req, res) => {
+  const profile = await findProfileByUserId(req.user.id);
+  if (!profile)
+    return res.status(404).json({ message: "프로필을 찾을 수 없습니다." });
+  await pool.query(
+    "UPDATE profile SET is_public = NOT is_public WHERE user_id = ?",
+    [req.user.id],
+  );
+  res.status(200).json({ message: "공개 여부가 변경되었습니다." });
+};
+
 module.exports = {
   getProfile,
   updateProfile: updateProfileController,
   uploadProfileImage,
   getPublicPings,
   getPublicGroups,
+  togglePublic,
 };

@@ -8,6 +8,7 @@ const {
   uploadProfileImage,
   getPublicPings,
   getPublicGroups,
+  togglePublic,
 } = require("../controllers/profileController");
 
 router.get("/", auth, getProfile);
@@ -15,5 +16,6 @@ router.put("/", auth, updateProfile);
 router.post("/image", auth, upload.single("image"), uploadProfileImage);
 router.get("/pings", auth, getPublicPings);
 router.get("/groups", auth, getPublicGroups);
+router.patch("/public", auth, togglePublic);
 
 module.exports = router;
