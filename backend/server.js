@@ -30,6 +30,9 @@ app.use("/uploads", express.static("uploads"));
 const profileRoutes = require("./routes/profileRoutes");
 app.use("/api/profile", profileRoutes);
 
+const friendRoutes = require("./routes/friendRoutes");
+app.use("/api/friends", friendRoutes);
+
 app.listen(3000, () => {
   console.log("서버 실행 중: http://localhost:3000");
 });
