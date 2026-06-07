@@ -6,6 +6,7 @@ import {
   getPings,
   addPingToGroup,
   removePingFromGroup,
+  updateGroup,
 } from "../api/ping";
 import styles from "./PingGroup.module.css";
 import logo from "../assets/logo.png";
@@ -21,6 +22,8 @@ function PingGroup() {
   const [showSelect, setShowSelect] = useState(false);
   const [selectedIds, setSelectedIds] = useState([]);
   const [groupSearch, setGroupSearch] = useState("");
+  const [showRenameModal, setShowRenameModal] = useState(false);
+  const [newGroupName, setNewGroupName] = useState("");
 
   useEffect(() => {
     fetchGroup();
@@ -74,6 +77,13 @@ function PingGroup() {
     setGroupSearch(e.target.value);
   };
 
+  const handleRename = async () => {
+    if (!newGroupName.trim()) return;
+    await updateGroup(id, newGroupName);
+    setGroup({ ...group, name: newGroupName });
+    setShowRenameModal(false);
+  };
+
   return (
     <div className={styles.page}>
 
@@ -101,7 +111,28 @@ function PingGroup() {
           ← 뒤로가기
         </button>
         
-        <span className={styles.group_name}>{group?.name}</span>
+        <span className={styles.group_name} onClick={() => { setNewGroupName(group?.name); setShowRenameModal(true); }} style={{ cursor: "pointer" }}>
+          {group?.name}
+        </span>
+
+      {/* 그룹 이름 변경 모달 */}
+        {showRenameModal && (
+        <div className={styles.overlay}>
+            <div className={styles.modal}>
+            <p className={styles.modal_title}>그룹 이름 변경</p>
+            <input
+                className={styles.modal_input}
+                type="text"
+                value={newGroupName}
+                onChange={(e) => setNewGroupName(e.target.value)}
+            />
+            <div className={styles.modal_btns}>
+                <button className={styles.modal_btn_cancel} onClick={() => setShowRenameModal(false)}>취소</button>
+                <button className={styles.modal_btn_confirm} onClick={handleRename}>변경</button>
+            </div>
+            </div>
+        </div>
+        )}
       </div>
 
       {!showSelect ? (

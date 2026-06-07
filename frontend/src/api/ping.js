@@ -122,3 +122,15 @@ export const removePingFromGroup = async (groupId, pingId) => {
   });
   return res.json();
 };
+
+export const updateGroup = async (id, name) => {
+  const res = await fetch(`${BASE_URL}/groups/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${getToken()}`,
+    },
+    body: JSON.stringify({ name }),
+  });
+  return res.json();
+};
