@@ -1,13 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { uploadProfileImage } from "../api/profile";
+import { uploadProfileImage, updateProfile, getProfile } from "../api/profile";
 import styles from "./SetFirst.module.css";
 import logo from "../assets/logo.png";
 
 function SetFirst() {
   const [image, setImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
+  const [comment, setComment] = useState("");
+  const [nickname, setNickname] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    fetchProfile();
+  }, []);
+
+  const fetchProfile = async () => {
+    const data = await getProfile();
+    setComment(data.comment || "");
+    setNickname(data.nickname || "");
+    setImagePreview(data.image ? `http://localhost:3000${data.image}` : null);
+  };
 
   const handleImage = (e) => {
     const file = e.target.files[0];
@@ -22,6 +35,7 @@ function SetFirst() {
       formData.append("image", image);
       await uploadProfileImage(formData);
     }
+    await updateProfile(nickname, comment, []);
     navigate("/profile");
   };
 
@@ -34,7 +48,7 @@ function SetFirst() {
         <img className={styles.logo_img} src={logo} alt="Show Ping! 로고" />
       </div>
 
-      <p className={styles.title}>당신의 프로필 사진을<br />업로드 해주세요!</p>
+      <p className={styles.title}>당신에 대해서 알려주세요!<br />사진 업로드 및 자기소개</p>
 
       {/* 이미지 업로드 */}
       <label className={styles.image_wrap} htmlFor="imageInput">
@@ -55,6 +69,17 @@ function SetFirst() {
         style={{ display: "none" }}
         onChange={handleImage}
       />
+
+      {/* 자기소개 */}
+      <div className={styles.comment_section}>
+        <label className={styles.comment_label}>자기 소개</label>
+        <textarea
+          className={styles.comment_input}
+          placeholder="자기소개를 입력해 주세요."
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
+        />
+      </div>
 
       {/* 완료 버튼 */}
       <div className={styles.submit_wrap}>

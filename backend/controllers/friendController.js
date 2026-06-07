@@ -9,6 +9,7 @@ const {
   addFriend,
   deleteFriend,
   deleteFriendRequest,
+  countFriends,
 } = require("../models/friendModel");
 
 // 친구 목록 조회
@@ -82,6 +83,11 @@ const deleteFriendController = async (req, res) => {
   res.status(200).json({ message: "친구가 삭제되었습니다." });
 };
 
+const getFriendCount = async (req, res) => {
+  const count = await countFriends(req.user.id);
+  res.status(200).json({ count });
+};
+
 module.exports = {
   getFriends,
   getFriendRequests,
@@ -89,4 +95,5 @@ module.exports = {
   sendFriendRequest,
   handleFriendRequest,
   deleteFriend: deleteFriendController,
+  getFriendCount,
 };

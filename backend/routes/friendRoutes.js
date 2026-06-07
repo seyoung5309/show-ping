@@ -8,12 +8,14 @@ const {
   sendFriendRequest,
   handleFriendRequest,
   deleteFriend,
+  getFriendCount,
 } = require("../controllers/friendController");
 
 const { getUserProfile } = require("../controllers/profileController");
 
 router.get("/", auth, getFriends);
 router.get("/search", auth, searchUsers);
+router.get("/count", auth, getFriendCount);
 router.get("/requests", auth, getFriendRequests);
 router.post("/request/:id", auth, sendFriendRequest);
 router.patch("/request/:id", auth, handleFriendRequest);

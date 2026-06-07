@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getProfile, getPublicPings, getPublicGroups, togglePublic } from "../api/profile";
+import { getFriendCount } from "../api/friend";
 import styles from "./Profile.module.css";
 import logo from "../assets/logo.png";
 import Hamburger from "../components/Hamburger";
@@ -10,16 +11,23 @@ function Profile() {
   const [pings, setPings] = useState([]);
   const [groups, setGroups] = useState([]);
   const navigate = useNavigate();
+  const [friendCount, setFriendCount] = useState(0);
 
   useEffect(() => {
     fetchProfile();
     fetchPings();
     fetchGroups();
+    fetchFriendCount();
   }, []);
 
   const fetchProfile = async () => {
     const data = await getProfile();
     setProfile(data);
+  };
+
+  const fetchFriendCount = async () => {
+    const data = await getFriendCount();
+    setFriendCount(data.count);
   };
 
   const fetchPings = async () => {
@@ -50,6 +58,7 @@ function Profile() {
 
       {/* 프로필 섹션 */}
       <div className={styles.profile_section}>
+
         {/* 프로필 사진 */}
         <div className={styles.profile_img_wrap} onClick={() => navigate("/set-first")}>
           {profile.image
@@ -58,13 +67,15 @@ function Profile() {
           }
         </div>
 
-        {/* 우측 정보 */}
+        {/* 닉네임, 자기소개, 친구수 */}
         <div className={styles.profile_info}>
           <p className={styles.nickname}>{profile.nickname}</p>
-          <p className={styles.comment}>{profile.comment}</p>
+          <p className={styles.comment} onClick={() => navigate("/set-first")} style={{ cursor: "pointer" }}>
+            {profile.comment || "자기소개가 없습니다."}
+          </p>
           <div className={styles.profile_meta}>
             <span className={styles.friends} onClick={() => navigate("/friends")}>
-              친구 0명
+              친구 {friendCount}명
             </span>
             <div className={styles.toggle_wrap}>
               <div
@@ -79,13 +90,17 @@ function Profile() {
             </div>
           </div>
         </div>
+
       </div>
 
       {/* 관심사 태그 */}
       <div className={styles.categories} onClick={() => navigate("/set-second")}>
-        {profile.categories && profile.categories.map((c) => (
-          <span key={c.id} className={styles.category_tag}>{c.name}</span>
-        ))}
+        {profile.categories && profile.categories.length > 0
+          ? profile.categories.map((c) => (
+              <span key={c.id} className={styles.category_tag}>{c.name}</span>
+            ))
+          : <span className={styles.no_category}>카테고리가 없습니다.</span>
+        }
       </div>
 
       {/* 그룹 목록 */}
@@ -121,6 +136,7 @@ function Profile() {
           </div>
         ))}
       </div>
+
     </div>
   );
 }
