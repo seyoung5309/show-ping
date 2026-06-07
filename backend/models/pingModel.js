@@ -1,10 +1,8 @@
 const pool = require("../db");
 
 // 전체 목록 조회
-const findAllPings = async (userId, search, categoryId) => {
-  let query = `
-    SELECT DISTINCT p.* FROM pings p
-  `;
+const findAllPings = async (userId, search, categoryId, sort = "latest") => {
+  let query = `SELECT DISTINCT p.* FROM pings p `;
   const params = [userId];
 
   if (categoryId) {
@@ -23,7 +21,23 @@ const findAllPings = async (userId, search, categoryId) => {
     params.push(categoryId);
   }
 
-  query += `ORDER BY p.created_at DESC`;
+  switch (sort) {
+    case "oldest":
+      query += `ORDER BY p.created_at ASC`;
+      break;
+    case "low":
+      query += `ORDER BY p.price ASC`;
+      break;
+    case "high":
+      query += `ORDER BY p.price DESC`;
+      break;
+    case "name":
+      query += `ORDER BY p.name ASC`;
+      break;
+    default:
+      query += `ORDER BY p.created_at DESC`;
+      break;
+  }
 
   const [rows] = await pool.query(query, params);
   return rows;

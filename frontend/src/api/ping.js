@@ -2,9 +2,13 @@ const BASE_URL = "http://localhost:3000/api";
 
 const getToken = () => localStorage.getItem("token");
 
-export const getPings = async (search = "", categoryId = "") => {
+export const getPings = async (
+  search = "",
+  categoryId = "",
+  sort = "latest",
+) => {
   const res = await fetch(
-    `${BASE_URL}/pings?search=${search}&categoryId=${categoryId}`,
+    `${BASE_URL}/pings?search=${search}&categoryId=${categoryId}&sort=${sort}`,
     { headers: { Authorization: `Bearer ${getToken()}` } },
   );
   return res.json();
