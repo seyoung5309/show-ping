@@ -8,11 +8,21 @@ const {
   addPingToGroup,
   removePingFromGroup,
   findPingsInGroup,
+  getLatestPingImage,
 } = require("../models/groupModel");
 
 const getGroups = async (req, res) => {
   const groups = await findAllGroups(req.user.id);
-  res.status(200).json(groups);
+  const groupsWithImage = await Promise.all(
+    groups.map(async (g) => {
+      if (!g.image) {
+        const latestImage = await getLatestPingImage(g.id);
+        return { ...g, image: latestImage };
+      }
+      return g;
+    }),
+  );
+  res.status(200).json(groupsWithImage);
 };
 
 const createGroupController = async (req, res) => {

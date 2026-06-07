@@ -3,7 +3,7 @@ const pool = require("../db");
 // 전체 조회
 const findAllGroups = async (userId) => {
   const [rows] = await pool.query(
-    "SELECT * FROM ping_groups WHERE user_id = ? ORDER BY created_at DESC",
+    "SELECT * FROM ping_groups WHERE user_id = ? ORDER BY created_at ASC",
     [userId],
   );
   return rows;
@@ -78,6 +78,17 @@ const findPingsInGroup = async (groupId) => {
   return rows;
 };
 
+const getLatestPingImage = async (groupId) => {
+  const [rows] = await pool.query(
+    `SELECT p.image FROM pings p
+     JOIN group_with_ping gwp ON gwp.ping_id = p.id
+     WHERE gwp.group_id = ? AND p.image IS NOT NULL
+     ORDER BY p.created_at DESC LIMIT 1`,
+    [groupId],
+  );
+  return rows[0] ? rows[0].image : null;
+};
+
 module.exports = {
   findAllGroups,
   findGroupById,
@@ -88,4 +99,5 @@ module.exports = {
   addPingToGroup,
   removePingFromGroup,
   findPingsInGroup,
+  getLatestPingImage,
 };

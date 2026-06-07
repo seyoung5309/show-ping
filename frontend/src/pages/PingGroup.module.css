@@ -96,6 +96,7 @@ input::placeholder {
     height: 150px;
     background: #FFD2E2;
     object-fit: cover;
+    object-position: center;
 }
 
 .ping_info {
