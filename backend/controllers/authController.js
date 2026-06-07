@@ -96,4 +96,14 @@ const withdraw = async (req, res) => {
   res.status(200).json({ message: "회원 탈퇴가 완료되었습니다." });
 };
 
-module.exports = { checkNickname, signup, login, withdraw };
+const checkPassword = async (req, res) => {
+  const { password } = req.body;
+  const [rows] = await pool.query("SELECT password FROM users WHERE id = ?", [
+    req.user.id,
+  ]);
+  const user = rows[0];
+  const isMatch = await bcrypt.compare(password, user.password);
+  res.status(200).json({ ok: isMatch });
+};
+
+module.exports = { checkNickname, signup, login, withdraw, checkPassword };

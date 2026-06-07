@@ -1,4 +1,5 @@
 const BASE_URL = "http://localhost:3000/api/auth";
+const getToken = () => localStorage.getItem("token");
 
 export const login = async (email, password) => {
   const res = await fetch(`${BASE_URL}/login`, {

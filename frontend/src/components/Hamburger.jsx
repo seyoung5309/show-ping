@@ -3,10 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { withdraw } from "../api/auth";
 import styles from "./Hamburger.module.css";
 import logo from "../assets/logo.png";
+const getToken = () => localStorage.getItem("token");
 
 function Hamburger() {
   const [isOpen, setIsOpen] = useState(false);
   const [modal, setModal] = useState("");
+  const [passwordInput, setPasswordInput] = useState("");
   const navigate = useNavigate();
 
   const handleNavigate = (path) => {
@@ -21,6 +23,21 @@ function Hamburger() {
   };
 
   const handleWithdraw = async () => {
+    // 비밀번호 확인
+    const res = await fetch("http://localhost:3000/api/auth/check-password", {
+        method: "POST",
+        headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${getToken()}`,
+        },
+        body: JSON.stringify({ password: passwordInput }),
+    });
+    const data = await res.json();
+    if (!data.ok) {
+        setModal("비밀번호가 올바르지 않습니다.");
+        setPasswordInput("");
+        return;
+    }
     await withdraw();
     localStorage.removeItem("token");
     setIsOpen(false);
@@ -68,13 +85,26 @@ function Hamburger() {
       {/* 회원 탈퇴 확인 모달 */}
       {modal && (
         <div className={styles.modal_overlay}>
-          <div className={styles.modal}>
+            <div className={styles.modal}>
             <p>{modal}</p>
+            {modal === "정말 탈퇴하시겠어요?" && (
+                <input
+                className={styles.modal_input}
+                type="password"
+                placeholder="비밀번호를 입력하세요"
+                value={passwordInput}
+                onChange={(e) => setPasswordInput(e.target.value)}
+                />
+            )}
             <div className={styles.modal_btns}>
-              <button className={styles.modal_cancel} onClick={() => setModal("")}>취소</button>
-              <button className={styles.modal_confirm} onClick={handleWithdraw}>탈퇴</button>
+                <button className={styles.modal_cancel} onClick={() => { setModal(""); setPasswordInput(""); }}>취소</button>
+                <button className={styles.modal_confirm} onClick={
+                modal === "정말 탈퇴하시겠어요?" ? handleWithdraw : () => setModal("")
+                }>
+                {modal === "정말 탈퇴하시겠어요?" ? "탈퇴" : "확인"}
+                </button>
             </div>
-          </div>
+            </div>
         </div>
       )}
     </>
