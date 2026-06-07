@@ -72,7 +72,8 @@ const findPingsInGroup = async (groupId) => {
   const [rows] = await pool.query(
     `SELECT p.* FROM pings p
      JOIN group_with_ping gwp ON gwp.ping_id = p.id
-     WHERE gwp.group_id = ?`,
+     WHERE gwp.group_id = ?
+     ORDER BY ping_id DESC`,
     [groupId],
   );
   return rows;
