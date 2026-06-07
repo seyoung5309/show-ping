@@ -17,19 +17,35 @@ import UserProfile from "./pages/UserProfile";
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/main" element={<PingMain />} />
-        <Route path="/group/:id" element={<PingGroup />} />
-        <Route path="/ping/add" element={<PingAddUpdate />} />
-        <Route path="/ping/update/:id" element={<PingAddUpdate />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/set-first" element={<SetFirst />} />
-        <Route path="/set-second" element={<SetSecond />} />
-        <Route path="/friends" element={<Friends />} />
-        <Route path="/profile/:userId" element={<UserProfile />} />
-      </Routes>
+      <div style={{
+        display: "flex",
+        justifyContent: "center",
+        minHeight: "100vh",
+        backgroundColor: "#f0f0f0",
+      }}>
+        <div style={{
+          width: "402px",
+          minHeight: "100vh",
+          backgroundColor: "#fff",
+          border: "1px solid rgba(0,0,0,0.1)",
+          position: "relative",
+          overflow: "hidden",
+        }}>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/main" element={<PingMain />} />
+            <Route path="/group/:id" element={<PingGroup />} />
+            <Route path="/ping/add" element={<PingAddUpdate />} />
+            <Route path="/ping/update/:id" element={<PingAddUpdate />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/profile/:userId" element={<UserProfile />} />
+            <Route path="/set-first" element={<SetFirst />} />
+            <Route path="/set-second" element={<SetSecond />} />
+            <Route path="/friends" element={<Friends />} />
+          </Routes>
+        </div>
+      </div>
     </BrowserRouter>
   );
 }
