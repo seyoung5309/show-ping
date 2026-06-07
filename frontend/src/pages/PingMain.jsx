@@ -14,6 +14,7 @@ function PingMain() {
   const [showGroupModal, setShowGroupModal] = useState(false);
   const [showCategoryModal, setShowCategoryModal] = useState(false);
   const [newGroupName, setNewGroupName] = useState("");
+  const [sort, setSort] = useState("latest");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,8 +23,8 @@ function PingMain() {
     fetchCategories();
   }, []);
 
-  const fetchPings = async (s = search, c = categoryId) => {
-    const data = await getPings(s, c);
+  const fetchPings = async (s = search, c = categoryId, so = sort) => {
+    const data = await getPings(s, c, so);
     setPings(data);
   };
 
@@ -54,6 +55,11 @@ function PingMain() {
     setNewGroupName("");
     setShowGroupModal(false);
     fetchGroups();
+  };
+
+  const handleSort = (e) => {
+    setSort(e.target.value);
+    fetchPings(search, categoryId, e.target.value);
   };
 
   return (
@@ -97,12 +103,19 @@ function PingMain() {
         ))}
       </div>
 
-      {/* 카테고리 버튼 */}
-      <div className={styles.category_wrap}>
+      {/* 카테고리, 정렬 버튼 */}
+      <div className={styles.filter_wrap}>
+        <select className={styles.sort_btn} onChange={handleSort} value={sort}>
+            <option value="latest">생성순</option>
+            <option value="oldest">오래된 순</option>
+            <option value="low">낮은 가격순</option>
+            <option value="high">높은 가격순</option>
+            <option value="name">가나다순</option>
+      </select>
         <button className={styles.category_btn} onClick={() => setShowCategoryModal(true)}>
-          카테고리
+            카테고리
         </button>
-      </div>
+        </div>
 
       {/* 위시리스트 목록 */}
       <div className={styles.ping_grid}>

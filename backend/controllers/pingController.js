@@ -23,8 +23,8 @@ const path = require("path");
 
 // 전체 목록 조회
 const getPings = async (req, res) => {
-  const { search, categoryId } = req.query;
-  const pings = await findAllPings(req.user.id, search, categoryId);
+  const { search, categoryId, sort } = req.query;
+  const pings = await findAllPings(req.user.id, search, categoryId, sort);
   res.status(200).json(pings);
 };
 
