@@ -78,16 +78,23 @@ function PingMain() {
       </div>
 
       {/* 그룹 목록 */}
-      <div className={styles.group_wrap}>
-        {groups.map((g) => (
-          <div key={g.id} className={styles.group_item} onClick={() => navigate(`/group/${g.id}`)}>
-            <div className={styles.group_thumb}></div>
-            <p className={styles.group_name}>{g.name}</p>
-          </div>
-        ))}
+        <div className={styles.group_wrap}>
+        {/* 추가 버튼 맨 앞 */}
         <div className={styles.group_item}>
-          <div className={styles.group_add} onClick={() => setShowGroupModal(true)}>+</div>
+            <div className={styles.group_add} onClick={() => setShowGroupModal(true)}>+</div>
         </div>
+
+        {groups.map((g) => (
+            <div key={g.id} className={styles.group_item} onClick={() => navigate(`/group/${g.id}`)}>
+            <div className={styles.group_thumb}>
+                {g.image
+                ? <img src={`http://localhost:3000${g.image}`} alt={g.name} className={styles.group_thumb_img} />
+                : <div />
+                }
+            </div>
+            <p className={styles.group_name}>{g.name}</p>
+            </div>
+        ))}
       </div>
 
       {/* 카테고리 버튼 */}
