@@ -66,9 +66,20 @@ const getPublicPings = async (req, res) => {
 };
 
 // 공개된 그룹 조회
+const { getLatestPingImage } = require("../models/groupModel");
+
 const getPublicGroups = async (req, res) => {
   const groups = await findPublicGroupsByUserId(req.user.id);
-  res.status(200).json(groups);
+  const groupsWithImage = await Promise.all(
+    groups.map(async (g) => {
+      if (!g.image) {
+        const latestImage = await getLatestPingImage(g.id);
+        return { ...g, image: latestImage };
+      }
+      return g;
+    }),
+  );
+  res.status(200).json(groupsWithImage);
 };
 
 const togglePublic = async (req, res) => {

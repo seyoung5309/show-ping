@@ -101,6 +101,7 @@ input::placeholder {
     object-fit: cover;
     object-position: center;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 .group_add {
