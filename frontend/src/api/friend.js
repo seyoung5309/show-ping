@@ -49,3 +49,10 @@ export const deleteFriend = async (id) => {
   });
   return res.json();
 };
+
+export const getFriendCount = async () => {
+  const res = await fetch(`${BASE_URL}/count`, {
+    headers: { Authorization: `Bearer ${getToken()}` },
+  });
+  return res.json();
+};
