@@ -51,11 +51,40 @@ const addCategoryToUser = async (userId, categoryId) => {
 };
 
 // 공개된 위시리스트 조회
-const findPublicPingsByUserId = async (userId) => {
-  const [rows] = await pool.query(
-    "SELECT * FROM pings WHERE user_id = ? AND is_public = 1 ORDER BY created_at DESC",
-    [userId],
-  );
+const findPublicPingsByUserId = async (userId, categoryId, sort = "latest") => {
+  let query = `SELECT DISTINCT p.* FROM pings p `;
+  const params = [userId];
+
+  if (categoryId) {
+    query += `JOIN category_with_ping cwp ON cwp.ping_id = p.id `;
+  }
+
+  query += `WHERE p.user_id = ? AND p.is_public = 1 `;
+
+  if (categoryId) {
+    query += `AND cwp.category_id = ? `;
+    params.push(categoryId);
+  }
+
+  switch (sort) {
+    case "oldest":
+      query += `ORDER BY p.created_at ASC`;
+      break;
+    case "low":
+      query += `ORDER BY p.price ASC`;
+      break;
+    case "high":
+      query += `ORDER BY p.price DESC`;
+      break;
+    case "name":
+      query += `ORDER BY p.name ASC`;
+      break;
+    default:
+      query += `ORDER BY p.created_at DESC`;
+      break;
+  }
+
+  const [rows] = await pool.query(query, params);
   return rows;
 };
 

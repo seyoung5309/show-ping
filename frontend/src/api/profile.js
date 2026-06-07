@@ -33,10 +33,13 @@ export const uploadProfileImage = async (formData) => {
   return res.json();
 };
 
-export const getPublicPings = async () => {
-  const res = await fetch(`${BASE_URL}/profile/pings`, {
-    headers: { Authorization: `Bearer ${getToken()}` },
-  });
+export const getPublicPings = async (categoryId = "", sort = "latest") => {
+  const res = await fetch(
+    `${BASE_URL}/profile/pings?categoryId=${categoryId}&sort=${sort}`,
+    {
+      headers: { Authorization: `Bearer ${getToken()}` },
+    },
+  );
   return res.json();
 };
 

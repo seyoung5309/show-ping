@@ -60,7 +60,8 @@ const uploadProfileImage = async (req, res) => {
 
 // 공개된 위시리스트 조회
 const getPublicPings = async (req, res) => {
-  const pings = await findPublicPingsByUserId(req.user.id);
+  const { categoryId, sort = "latest" } = req.query;
+  const pings = await findPublicPingsByUserId(req.user.id, categoryId, sort);
   res.status(200).json(pings);
 };
 

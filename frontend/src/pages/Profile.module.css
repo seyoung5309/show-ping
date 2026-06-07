@@ -267,3 +267,114 @@ button {
     font-size: 12px;
     color: rgba(0, 0, 0, 0.4);
 }
+
+.group_thumb_img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 8px;
+}
+
+.filter_wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.sort_btn {
+    height: 28px;
+    padding: 0 12px;
+    border-radius: 50px;
+    border: 2px solid #FE679C;
+    background: #FFEFF5;
+    font-family: Pretendard;
+    font-size: 12px;
+    color: #FE679C;
+    cursor: pointer;
+}
+
+.no_category {
+    font-family: Pretendard;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.4);
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.modal {
+    width: 306px;
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.modal_title {
+    font-family: Pretendard;
+    font-size: 16px;
+    font-weight: 600;
+    color: #000;
+    margin: 0;
+}
+
+.category_list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.category_item {
+    padding: 6px 12px;
+    border-radius: 50px;
+    border: 1px solid #FE679C;
+    background: #FFEFF5;
+    font-family: Pretendard;
+    font-size: 12px;
+    color: #FE679C;
+}
+
+.modal_btn_cancel {
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background: #fff;
+    font-family: Pretendard;
+    font-size: 12px;
+}
+
+/* ============================
+   카테고리 버튼
+   ============================ */
+.category_wrap {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 12px;
+}
+
+.category_btn {
+    height: 28px;
+    padding: 0 16px;
+    border-radius: 50px;
+    border: 2px solid #FE679C;
+    background: #FFEFF5;
+    font-family: Pretendard;
+    font-size: 12px;
+    color: #FE679C;
+}
