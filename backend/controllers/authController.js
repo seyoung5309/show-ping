@@ -1,5 +1,6 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const pool = require("../db");
 
 // 회원 가입
 const {
@@ -90,4 +91,9 @@ const login = async (req, res) => {
   res.status(200).json({ message: "로그인 성공", token });
 };
 
-module.exports = { checkNickname, signup, login };
+const withdraw = async (req, res) => {
+  await pool.query("DELETE FROM users WHERE id = ?", [req.user.id]);
+  res.status(200).json({ message: "회원 탈퇴가 완료되었습니다." });
+};
+
+module.exports = { checkNickname, signup, login, withdraw };

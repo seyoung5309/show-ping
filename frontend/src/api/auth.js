@@ -26,3 +26,11 @@ export const signup = async (email, password, passwordConfirm, nickname) => {
   });
   return res.json();
 };
+
+export const withdraw = async () => {
+  const res = await fetch(`${BASE_URL}/withdraw`, {
+    method: "DELETE",
+    headers: { Authorization: `Bearer ${getToken()}` },
+  });
+  return res.json();
+};
