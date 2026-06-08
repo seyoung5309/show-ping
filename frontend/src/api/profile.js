@@ -71,4 +71,3 @@ export const getUserFriends = async (userId) => {
   });
   return res.json();
 };
-s;
