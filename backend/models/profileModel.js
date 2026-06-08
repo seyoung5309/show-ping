@@ -91,7 +91,7 @@ const findPublicPingsByUserId = async (userId, categoryId, sort = "latest") => {
 // 공개된 그룹 조회
 const findPublicGroupsByUserId = async (userId) => {
   const [rows] = await pool.query(
-    "SELECT * FROM ping_groups WHERE user_id = ? AND is_public = 1 ORDER BY created_at DESC",
+    "SELECT * FROM ping_groups WHERE user_id = ? AND is_public = 1 ORDER BY created_at ASC",
     [userId],
   );
   return rows;

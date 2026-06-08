@@ -121,7 +121,7 @@ function Profile() {
       </div>
 
       {/* 그룹 목록 */}
-      <div className={styles.group_wrap}>
+      <div className={styles.group_wrap}>       
         {groups.map((g) => (
           <div key={g.id} className={styles.group_item} onClick={() => navigate(`/group/${g.id}`)}>
             <div className={styles.group_thumb}>
@@ -133,9 +133,7 @@ function Profile() {
             <p className={styles.group_name}>{g.name}</p>
           </div>
         ))}
-        <div className={styles.group_item}>
-          <div className={styles.group_add} onClick={() => navigate("/main")}>+</div>
-        </div>
+
       </div>
 
       {/* 정렬 + 카테고리 */}

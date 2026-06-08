@@ -111,6 +111,7 @@ function PingGroup() {
           ← 뒤로가기
         </button>
         
+        
         <span className={styles.group_name} onClick={() => { setNewGroupName(group?.name); setShowRenameModal(true); }} style={{ cursor: "pointer" }}>
           {group?.name}
         </span>
