@@ -11,6 +11,8 @@ const {
   findPublicGroupsByUserId,
 } = require("../models/profileModel");
 
+const { countFriends, findAllFriends } = require("../models/friendModel");
+
 const fs = require("fs");
 const path = require("path");
 
@@ -103,7 +105,18 @@ const getUserProfile = async (req, res) => {
   const categories = await findCategoriesByUserId(req.params.userId);
   const pings = await findPublicPingsByUserId(req.params.userId);
   const groups = await findPublicGroupsByUserId(req.params.userId);
-  res.status(200).json({ ...profile, categories, pings, groups });
+  const friendCount = await countFriends(req.params.userId);
+  res.status(200).json({ ...profile, categories, pings, groups, friendCount });
+};
+
+const getUserFriends = async (req, res) => {
+  const profile = await findProfileByUserId(req.params.userId);
+  if (!profile)
+    return res.status(404).json({ message: "프로필을 찾을 수 없습니다." });
+  if (!profile.is_public)
+    return res.status(403).json({ message: "비공개 프로필입니다." });
+  const friends = await findAllFriends(req.params.userId);
+  res.status(200).json(friends);
 };
 
 module.exports = {
@@ -114,4 +127,5 @@ module.exports = {
   getPublicGroups,
   togglePublic,
   getUserProfile,
+  getUserFriends,
 };

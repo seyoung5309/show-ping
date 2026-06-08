@@ -64,3 +64,10 @@ export const getUserProfile = async (userId) => {
   });
   return res.json();
 };
+
+export const getUserFriends = async (userId) => {
+  const res = await fetch(`${BASE_URL}/profile/${userId}/friends`, {
+    headers: { Authorization: `Bearer ${getToken()}` },
+  });
+  return res.json();
+};

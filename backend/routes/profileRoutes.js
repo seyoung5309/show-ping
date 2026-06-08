@@ -10,6 +10,7 @@ const {
   getPublicGroups,
   togglePublic,
   getUserProfile,
+  getUserFriends,
 } = require("../controllers/profileController");
 
 router.get("/", auth, getProfile);
@@ -18,6 +19,7 @@ router.post("/image", auth, upload.single("image"), uploadProfileImage);
 router.patch("/public", auth, togglePublic);
 router.get("/pings", auth, getPublicPings);
 router.get("/groups", auth, getPublicGroups);
+router.get("/:userId/friends", auth, getUserFriends);
 router.get("/:userId", auth, getUserProfile);
 
 module.exports = router;
