@@ -204,3 +204,124 @@ button {
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
 }
+
+.friends {
+    font-family: Pretendard;
+    font-size: 12px;
+    color: #000;
+    cursor: pointer;
+}
+
+.no_category {
+    font-family: Pretendard;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.4);
+}
+
+.group_thumb {
+    width: 80px;
+    height: 50px;
+    border-radius: 10px;
+    border: 2px solid #FE679C;
+    background: #FFD2E2;
+    overflow: hidden;
+}
+
+.group_thumb_img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.modal {
+    width: 306px;
+    max-height: 500px;
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.modal_title {
+    font-family: Pretendard;
+    font-size: 16px;
+    font-weight: 600;
+    color: #000;
+    margin: 0;
+}
+
+.friend_list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overflow-y: auto;
+    max-height: 300px;
+}
+
+.friend_item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+}
+
+.friend_img_wrap {
+    flex-shrink: 0;
+}
+
+.friend_img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #FE679C;
+}
+
+.friend_img_empty {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #FE679C;
+    background: #FFD2E2;
+}
+
+.friend_name {
+    font-family: Pretendard;
+    font-size: 13px;
+    font-weight: 500;
+    color: #000;
+    margin: 0;
+}
+
+.friend_comment {
+    font-family: Pretendard;
+    font-size: 11px;
+    color: rgba(0, 0, 0, 0.5);
+    margin: 0;
+}
+
+.modal_btn_cancel {
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background: #fff;
+    font-family: Pretendard;
+    font-size: 12px;
+    align-self: flex-end;
+}

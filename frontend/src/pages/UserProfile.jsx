@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { getUserProfile } from "../api/profile";
+import { getUserProfile, getUserFriends } from "../api/profile";
 import styles from "./UserProfile.module.css";
 import logo from "../assets/logo.png";
 import Hamburger from "../components/Hamburger";
@@ -8,12 +8,14 @@ import Hamburger from "../components/Hamburger";
 function UserProfile() {
   const { userId } = useParams();
   const [profile, setProfile] = useState(null);
+  const [friends, setFriends] = useState([]);
+  const [showFriends, setShowFriends] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
     fetchUserProfile();
-  }, []);
+  }, [userId]);
 
   const fetchUserProfile = async () => {
     const data = await getUserProfile(userId);
@@ -22,6 +24,12 @@ function UserProfile() {
     } else {
       setProfile(data);
     }
+  };
+
+  const handleShowFriends = async () => {
+    const data = await getUserFriends(userId);
+    setFriends(data);
+    setShowFriends(true);
   };
 
   if (error) return (
@@ -59,15 +67,23 @@ function UserProfile() {
         </div>
         <div className={styles.profile_info}>
           <p className={styles.nickname}>{profile.nickname}</p>
-          <p className={styles.comment}>{profile.comment}</p>
+          <p className={styles.comment}>
+            {profile.comment || "자기소개가 없습니다."}
+          </p>
+          <span className={styles.friends} onClick={handleShowFriends}>
+            친구 {profile.friendCount}명
+          </span>
         </div>
       </div>
 
       {/* 관심사 태그 */}
       <div className={styles.categories}>
-        {profile.categories && profile.categories.map((c) => (
-          <span key={c.id} className={styles.category_tag}>{c.name}</span>
-        ))}
+        {profile.categories && profile.categories.length > 0
+          ? profile.categories.map((c) => (
+              <span key={c.id} className={styles.category_tag}>{c.name}</span>
+            ))
+          : <span className={styles.no_category}>카테고리가 없습니다.</span>
+        }
       </div>
 
       {/* 공개 그룹 목록 */}
@@ -75,7 +91,7 @@ function UserProfile() {
         {profile.groups && profile.groups.map((g) => (
           <div key={g.id} className={styles.group_item}>
             <div className={styles.group_thumb}>
-              {g.image && <img src={`http://localhost:3000${g.image}`} alt={g.name} />}
+              {g.image && <img src={`http://localhost:3000${g.image}`} alt={g.name} className={styles.group_thumb_img} />}
             </div>
             <p className={styles.group_name}>{g.name}</p>
           </div>
@@ -100,6 +116,36 @@ function UserProfile() {
           </div>
         ))}
       </div>
+
+      {/* 친구 목록 모달 */}
+      {showFriends && (
+        <div className={styles.overlay}>
+          <div className={styles.modal}>
+            <p className={styles.modal_title}>친구 목록</p>
+            <div className={styles.friend_list}>
+              {friends.length === 0
+                ? <p className={styles.no_category}>친구가 없습니다.</p>
+                : friends.map((f) => (
+                    <div key={f.id} className={styles.friend_item} onClick={() => { setShowFriends(false); navigate(`/profile/${f.id}`); }}>
+                      <div className={styles.friend_img_wrap}>
+                        {f.image
+                          ? <img src={`http://localhost:3000${f.image}`} alt={f.nickname} className={styles.friend_img} />
+                          : <div className={styles.friend_img_empty} />
+                        }
+                      </div>
+                      <div>
+                        <p className={styles.friend_name}>{f.nickname}</p>
+                        <p className={styles.friend_comment}>{f.comment}</p>
+                      </div>
+                    </div>
+                  ))
+              }
+            </div>
+            <button className={styles.modal_btn_cancel} onClick={() => setShowFriends(false)}>닫기</button>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }
