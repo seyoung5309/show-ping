@@ -9,7 +9,7 @@ School Database Programming Project
 프로젝트 명: Show Ping!
 > 여러 플랫폼의 상품 정보를 통합하여 사용자의 합리적 소비와 비교 의사결정을 돕는 서비스
 
-기간: 2026.05.14 ~
+기간: 2026.05.14 ~ 2026.06.14
 
 [notion 기획 문서 바로가기](https://app.notion.com/p/360b72de1a3880dfa058dde26dc06c32?source=copy_link)
 
