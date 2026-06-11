@@ -3,6 +3,7 @@ import './App.css'
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import Splash from './pages/Splash';
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import PingMain from "./pages/PingMain";
@@ -32,6 +33,7 @@ function App() {
           overflow: "hidden",
         }}>
           <Routes>
+            <Route path="/" element={<Splash />} />       
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/main" element={<PingMain />} />
