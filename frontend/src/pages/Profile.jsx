@@ -6,6 +6,7 @@ import { getFriendCount } from "../api/friend";
 import styles from "./Profile.module.css";
 import logo from "../assets/logo.png";
 import Hamburger from "../components/Hamburger";
+const API_URL = import.meta.env.VITE_API_URL;
 
 function Profile() {
   const [profile, setProfile] = useState(null);
@@ -82,7 +83,7 @@ function Profile() {
       <div className={styles.profile_section}>
         <div className={styles.profile_img_wrap} onClick={() => navigate("/set-first")}>
           {profile.image
-            ? <img src={`http://localhost:3000${profile.image}`} alt="프로필" className={styles.profile_img} />
+            ? <img src={`${API_URL}${profile.image}`} alt="프로필" className={styles.profile_img} />
             : <div className={styles.profile_img_empty} />
           }
         </div>
@@ -126,7 +127,7 @@ function Profile() {
           <div key={g.id} className={styles.group_item} onClick={() => navigate(`/group/${g.id}`)}>
             <div className={styles.group_thumb}>
               {g.image
-                ? <img src={`http://localhost:3000${g.image}`} alt={g.name} className={styles.group_thumb_img} />
+                ? <img src={`${API_URL}${g.image}`} alt={g.name} className={styles.group_thumb_img} />
                 : <div />
               }
             </div>
@@ -157,7 +158,7 @@ function Profile() {
         {pings.map((p) => (
           <div key={p.id} className={styles.ping_card} onClick={() => navigate(`/ping/update/${p.id}`)}>
             {p.image
-              ? <img src={`http://localhost:3000${p.image}`} alt={p.name} className={styles.ping_img} />
+              ? <img src={`${API_URL}${p.image}`} alt={p.name} className={styles.ping_img} />
               : <div className={styles.ping_img} />
             }
             <div className={styles.ping_info}>

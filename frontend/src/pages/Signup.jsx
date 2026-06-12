@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { checkNickname, signup } from "../api/auth";
 import styles from "./Signup.module.css";
 import logo from '../assets/logo.png';
+const API_URL = import.meta.env.VITE_API_URL;
 
 function Signup() {
   const [nickname, setNickname] = useState("");

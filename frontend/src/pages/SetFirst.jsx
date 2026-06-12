@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { uploadProfileImage, updateProfile, getProfile } from "../api/profile";
 import styles from "./SetFirst.module.css";
 import logo from "../assets/logo.png";
+const API_URL = import.meta.env.VITE_API_URL;
 
 function SetFirst() {
   const [image, setImage] = useState(null);
@@ -19,7 +20,7 @@ function SetFirst() {
     const data = await getProfile();
     setComment(data.comment || "");
     setNickname(data.nickname || "");
-    setImagePreview(data.image ? `http://localhost:3000${data.image}` : null);
+    setImagePreview(data.image ? `${API_URL}${data.image}` : null);
   };
 
   const handleImage = (e) => {
