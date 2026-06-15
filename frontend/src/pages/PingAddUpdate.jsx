@@ -12,7 +12,6 @@ import {
 import styles from "./PingAddUpdate.module.css";
 import logo from "../assets/logo.png";
 import Hamburger from "../components/Hamburger";
-const API_URL = import.meta.env.VITE_API_URL;
 
 function PingAddUpdate() {
   const { id } = useParams();
@@ -50,7 +49,7 @@ function PingAddUpdate() {
     setComment(data.comment || "");
     setLink(data.link || "");
     setIsPublic(data.is_public === 1);
-    setImagePreview(data.image ? `${API_URL}${data.image}` : null);
+    setImagePreview(data.image ? data.image : null);
     if (data.categoryId) setCategoryId(data.categoryId);
     if (data.properties && data.properties.length > 0) {
       setProperties(data.properties);

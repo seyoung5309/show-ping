@@ -4,7 +4,6 @@ import { getPings, getGroups, createGroup, getCategories } from "../api/ping";
 import styles from "./PingMain.module.css";
 import logo from '../assets/logo.png';
 import Hamburger from "../components/Hamburger";
-const API_URL = import.meta.env.VITE_API_URL;
 
 function PingMain() {
   const [pings, setPings] = useState([]);
@@ -95,7 +94,7 @@ function PingMain() {
             <div key={g.id} className={styles.group_item} onClick={() => navigate(`/group/${g.id}`)}>
             <div className={styles.group_thumb}>
                 {g.image
-                ? <img src={`${API_URL}${g.image}`} alt={g.name} className={styles.group_thumb_img} />
+                ? <img src={g.image} alt={g.name} className={styles.group_thumb_img} />
                 : <div />
                 }
             </div>

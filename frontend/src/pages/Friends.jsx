@@ -11,7 +11,6 @@ import {
 import styles from "./Friends.module.css";
 import logo from "../assets/logo.png";
 import Hamburger from "../components/Hamburger";
-const API_URL = import.meta.env.VITE_API_URL;
 
 function Friends() {
   const [mode, setMode] = useState("list"); // list | requests | search
@@ -146,7 +145,7 @@ function Friends() {
                 <div key={f.id} className={styles.user_item}>
                 <div className={styles.user_img_wrap} onClick={() => navigate(`/profile/${f.id}`)} style={{ cursor: "pointer" }}>
                     {f.image
-                    ? <img src={`${API_URL}${f.image}`} alt={f.nickname} className={styles.user_img} />
+                    ? <img src={f.image} alt={f.nickname} className={styles.user_img} />
                     : <div className={styles.user_img_empty} />
                     }
                 </div>
@@ -171,7 +170,7 @@ function Friends() {
             <div key={r.id} className={styles.user_item}>
                 <div className={styles.user_img_wrap} onClick={() => navigate(`/profile/${r.user_id}`)} style={{ cursor: "pointer" }}>
                 {r.image
-                    ? <img src={`${API_URL}${r.image}`} alt={r.nickname} className={styles.user_img} />
+                    ? <img src={r.image} alt={r.nickname} className={styles.user_img} />
                     : <div className={styles.user_img_empty} />
                 }
                 </div>
@@ -195,7 +194,7 @@ function Friends() {
             <div key={u.id} className={styles.user_item}>
                 <div className={styles.user_img_wrap} onClick={() => navigate(`/profile/${u.id}`)} style={{ cursor: "pointer" }}>
                 {u.image
-                    ? <img src={`${API_URL}${u.image}`} alt={u.nickname} className={styles.user_img} />
+                    ? <img src={u.image} alt={u.nickname} className={styles.user_img} />
                     : <div className={styles.user_img_empty} />
                 }
                 </div>

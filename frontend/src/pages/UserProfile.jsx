@@ -4,7 +4,6 @@ import { getUserProfile, getUserFriends } from "../api/profile";
 import styles from "./UserProfile.module.css";
 import logo from "../assets/logo.png";
 import Hamburger from "../components/Hamburger";
-const API_URL = import.meta.env.VITE_API_URL;
 
 function UserProfile() {
   const { userId } = useParams();
@@ -62,7 +61,7 @@ function UserProfile() {
       <div className={styles.profile_section}>
         <div className={styles.profile_img_wrap}>
           {profile.image
-            ? <img src={`${API_URL}${profile.image}`} alt="프로필" className={styles.profile_img} />
+            ? <img src={profile.image} alt="프로필" className={styles.profile_img} />
             : <div className={styles.profile_img_empty} />
           }
         </div>
@@ -92,7 +91,7 @@ function UserProfile() {
         {profile.groups && profile.groups.map((g) => (
           <div key={g.id} className={styles.group_item}>
             <div className={styles.group_thumb}>
-              {g.image && <img src={`${API_URL}${g.image}`} alt={g.name} className={styles.group_thumb_img} />}
+              {g.image && <img src={g.image} alt={g.name} className={styles.group_thumb_img} />}
             </div>
             <p className={styles.group_name}>{g.name}</p>
           </div>
@@ -130,7 +129,7 @@ function UserProfile() {
                     <div key={f.id} className={styles.friend_item} onClick={() => { setShowFriends(false); navigate(`/profile/${f.id}`); }}>
                       <div className={styles.friend_img_wrap}>
                         {f.image
-                          ? <img src={`${API_URL}${f.image}`} alt={f.nickname} className={styles.friend_img} />
+                          ? <img src={f.image} alt={f.nickname} className={styles.friend_img} />
                           : <div className={styles.friend_img_empty} />
                         }
                       </div>

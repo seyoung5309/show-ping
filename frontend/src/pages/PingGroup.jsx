@@ -11,7 +11,6 @@ import {
 import styles from "./PingGroup.module.css";
 import logo from "../assets/logo.png";
 import Hamburger from "../components/Hamburger";
-const API_URL = import.meta.env.VITE_API_URL;
 
 function PingGroup() {
   const { id } = useParams();
