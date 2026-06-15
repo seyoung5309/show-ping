@@ -27,8 +27,11 @@ const getPings = async (req, res) => {
     const pings = await findAllPings(req.user.id, search, categoryId, sort);
     res.status(200).json(pings);
   } catch (err) {
-    console.error(err.message);
-    res.status(500).json({ message: err.message });
+    console.error(
+      "에러 전체:",
+      JSON.stringify(err, Object.getOwnPropertyNames(err)),
+    );
+    res.status(500).json({ message: err.message || String(err) });
   }
 };
 
@@ -46,8 +49,11 @@ const getPing = async (req, res) => {
       properties,
     });
   } catch (err) {
-    console.error(err.message);
-    res.status(500).json({ message: err.message });
+    console.error(
+      "에러 전체:",
+      JSON.stringify(err, Object.getOwnPropertyNames(err)),
+    );
+    res.status(500).json({ message: err.message || String(err) });
   }
 };
 
@@ -64,8 +70,11 @@ const createPingController = async (req, res) => {
     if (categoryId) await addCategoryToPing(id, categoryId);
     res.status(201).json({ message: "상품이 추가되었습니다.", id });
   } catch (err) {
-    console.error(err.message);
-    res.status(500).json({ message: err.message });
+    console.error(
+      "에러 전체:",
+      JSON.stringify(err, Object.getOwnPropertyNames(err)),
+    );
+    res.status(500).json({ message: err.message || String(err) });
   }
 };
 
@@ -114,8 +123,11 @@ const updatePingController = async (req, res) => {
     }
     res.status(200).json({ message: "상품이 수정되었습니다." });
   } catch (err) {
-    console.error(err.message);
-    res.status(500).json({ message: err.message });
+    console.error(
+      "에러 전체:",
+      JSON.stringify(err, Object.getOwnPropertyNames(err)),
+    );
+    res.status(500).json({ message: err.message || String(err) });
   }
 };
 
@@ -135,8 +147,11 @@ const deletePingController = async (req, res) => {
     await deletePing(req.params.id, req.user.id);
     res.status(200).json({ message: "상품이 삭제되었습니다." });
   } catch (err) {
-    console.error(err.message);
-    res.status(500).json({ message: err.message });
+    console.error(
+      "에러 전체:",
+      JSON.stringify(err, Object.getOwnPropertyNames(err)),
+    );
+    res.status(500).json({ message: err.message || String(err) });
   }
 };
 
@@ -149,8 +164,11 @@ const togglePublicController = async (req, res) => {
     await togglePublic(req.params.id, req.user.id);
     res.status(200).json({ message: "공개 여부가 변경되었습니다." });
   } catch (err) {
-    console.error(err.message);
-    res.status(500).json({ message: err.message });
+    console.error(
+      "에러 전체:",
+      JSON.stringify(err, Object.getOwnPropertyNames(err)),
+    );
+    res.status(500).json({ message: err.message || String(err) });
   }
 };
 
