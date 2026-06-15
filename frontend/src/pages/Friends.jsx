@@ -11,7 +11,6 @@ import {
 import styles from "./Friends.module.css";
 import logo from "../assets/logo.png";
 import Hamburger from "../components/Hamburger";
-const API_URL = import.meta.env.VITE_API_URL;
 
 function Friends() {
   const [mode, setMode] = useState("list"); // list | requests | search

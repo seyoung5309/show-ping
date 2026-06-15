@@ -6,7 +6,6 @@ import { getFriendCount } from "../api/friend";
 import styles from "./Profile.module.css";
 import logo from "../assets/logo.png";
 import Hamburger from "../components/Hamburger";
-const API_URL = import.meta.env.VITE_API_URL;
 
 function Profile() {
   const [profile, setProfile] = useState(null);
@@ -158,7 +157,7 @@ function Profile() {
         {pings.map((p) => (
           <div key={p.id} className={styles.ping_card} onClick={() => navigate(`/ping/update/${p.id}`)}>
             {p.image
-              ? <img src={`${API_URL}${p.image}`} alt={p.name} className={styles.ping_img} />
+              ? <img src={p.image} alt={p.name} className={styles.ping_img} />
               : <div className={styles.ping_img} />
             }
             <div className={styles.ping_info}>

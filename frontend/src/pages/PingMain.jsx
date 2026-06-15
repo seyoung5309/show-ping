@@ -4,7 +4,6 @@ import { getPings, getGroups, createGroup, getCategories } from "../api/ping";
 import styles from "./PingMain.module.css";
 import logo from '../assets/logo.png';
 import Hamburger from "../components/Hamburger";
-const API_URL = import.meta.env.VITE_API_URL;
 
 function PingMain() {
   const [pings, setPings] = useState([]);
@@ -123,7 +122,7 @@ function PingMain() {
         {pings.map((p) => (
             <div key={p.id} className={styles.ping_card} onClick={() => navigate(`/ping/update/${p.id}`)}>
             {p.image
-                ? <img src={`${API_URL}${p.image}`} alt={p.name} className={styles.ping_img} />
+                ? <img src={p.image} alt={p.name} className={styles.ping_img} />
                 : <div className={styles.ping_img}></div>
             }
             <div className={styles.ping_info}>

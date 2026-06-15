@@ -4,7 +4,6 @@ import { getUserProfile, getUserFriends } from "../api/profile";
 import styles from "./UserProfile.module.css";
 import logo from "../assets/logo.png";
 import Hamburger from "../components/Hamburger";
-const API_URL = import.meta.env.VITE_API_URL;
 
 function UserProfile() {
   const { userId } = useParams();
@@ -104,7 +103,7 @@ function UserProfile() {
         {profile.pings && profile.pings.map((p) => (
           <div key={p.id} className={styles.ping_card}>
             {p.image
-              ? <img src={`${API_URL}${p.image}`} alt={p.name} className={styles.ping_img} />
+              ? <img src={p.image} alt={p.name} className={styles.ping_img} />
               : <div className={styles.ping_img} />
             }
             <div className={styles.ping_info}>

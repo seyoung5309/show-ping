@@ -12,7 +12,6 @@ import {
 import styles from "./PingAddUpdate.module.css";
 import logo from "../assets/logo.png";
 import Hamburger from "../components/Hamburger";
-const API_URL = import.meta.env.VITE_API_URL;
 
 function PingAddUpdate() {
   const { id } = useParams();
