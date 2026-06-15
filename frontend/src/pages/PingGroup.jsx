@@ -11,6 +11,7 @@ import {
 import styles from "./PingGroup.module.css";
 import logo from "../assets/logo.png";
 import Hamburger from "../components/Hamburger";
+const API_URL = import.meta.env.VITE_API_URL;
 
 function PingGroup() {
   const { id } = useParams();
@@ -89,7 +90,7 @@ function PingGroup() {
 
       {/* 헤더 */}
       <div className={styles.header}>
-        <img className={styles.logo_img} src={logo} alt="Show Ping! 로고" />
+        <img className={styles.logo_img} src={logo} alt="Show Ping! 로고" onClick={() => navigate("/main")}/>
         <Hamburger />
       </div>
 

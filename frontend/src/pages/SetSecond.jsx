@@ -52,7 +52,7 @@ function SetSecond() {
       {/* 헤더 */}
       <div className={styles.header}>
         <button className={styles.back_btn} onClick={() => navigate(-1)}>← 뒤로가기</button>
-        <img className={styles.logo_img} src={logo} alt="Show Ping! 로고" />
+        <img className={styles.logo_img} src={logo} alt="Show Ping! 로고" onClick={() => navigate("/main")}/>
       </div>
 
       <div className={styles.title_wrap}>

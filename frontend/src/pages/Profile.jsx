@@ -6,6 +6,7 @@ import { getFriendCount } from "../api/friend";
 import styles from "./Profile.module.css";
 import logo from "../assets/logo.png";
 import Hamburger from "../components/Hamburger";
+const API_URL = import.meta.env.VITE_API_URL;
 
 function Profile() {
   const [profile, setProfile] = useState(null);
@@ -74,7 +75,7 @@ function Profile() {
 
       {/* 헤더 */}
       <div className={styles.header}>
-        <img className={styles.logo_img} src={logo} alt="Show Ping! 로고" />
+        <img className={styles.logo_img} src={logo} alt="Show Ping! 로고" onClick={() => navigate("/main")}/>
         <Hamburger />
       </div>
 

@@ -12,6 +12,7 @@ import {
 import styles from "./PingAddUpdate.module.css";
 import logo from "../assets/logo.png";
 import Hamburger from "../components/Hamburger";
+const API_URL = import.meta.env.VITE_API_URL;
 
 function PingAddUpdate() {
   const { id } = useParams();
@@ -117,7 +118,7 @@ function PingAddUpdate() {
 
       navigate(-1);
     } catch (err) {
-      console.error(error.message) 
+      console.error(err.message);
       setModal("오류가 발생했습니다. 다시 시도해주세요.");
     }
   };
@@ -127,7 +128,7 @@ function PingAddUpdate() {
 
       {/* 헤더 */}
       <div className={styles.header}>
-        <img className={styles.logo_img} src={logo} alt="Show Ping! 로고" />
+        <img className={styles.logo_img} src={logo} alt="Show Ping! 로고" onClick={() => navigate("/main")}/>
         <Hamburger />
       </div>
 

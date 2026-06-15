@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { uploadProfileImage, updateProfile, getProfile } from "../api/profile";
 import styles from "./SetFirst.module.css";
 import logo from "../assets/logo.png";
+const API_URL = import.meta.env.VITE_API_URL;
 
 function SetFirst() {
   const [image, setImage] = useState(null);
@@ -45,7 +46,7 @@ function SetFirst() {
       {/* 헤더 */}
       <div className={styles.header}>
         <button className={styles.back_btn} onClick={() => navigate(-1)}>← 뒤로가기</button>
-        <img className={styles.logo_img} src={logo} alt="Show Ping! 로고" />
+        <img className={styles.logo_img} src={logo} alt="Show Ping! 로고" onClick={() => navigate("/main")}/>
       </div>
 
       <p className={styles.title}>당신에 대해서 알려주세요!<br />사진 업로드 및 자기소개</p>
