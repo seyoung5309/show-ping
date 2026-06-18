@@ -5,6 +5,7 @@ import styles from "./PingMain.module.css";
 import logo from '../assets/logo.png';
 import Hamburger from "../components/Hamburger";
 import mainButtonIcon from '../assets/mainButton.svg';
+import searchIcon from '../assets/search.svg';
 
 function PingMain() {
   const [pings, setPings] = useState([]);
@@ -73,17 +74,17 @@ function PingMain() {
         <Hamburger />
       </div>
 
-      {/* 검색창 */}
-      <div className={styles.search_wrap}>
-        <input
-          className={styles.search}
-          type="text"
-          placeholder="상품 검색"
-          value={search}
-          onChange={handleSearch}
-        />
-        <span className={styles.search_icon}>🔍</span>
-      </div>
+    {/* 검색창 */}
+    <div className={styles.search_wrap}>
+    <input
+        className={styles.search}
+        type="text"
+        placeholder="상품 검색"
+        value={search}
+        onChange={handleSearch}
+    />
+    <img src={searchIcon} alt="검색" className={styles.search_icon} />
+    </div>
 
       {/* 그룹 목록 */}
         <div className={styles.group_wrap}>

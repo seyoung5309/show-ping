@@ -11,6 +11,7 @@ import {
 import styles from "./PingGroup.module.css";
 import logo from "../assets/logo.png";
 import Hamburger from "../components/Hamburger";
+import searchIcon from '../assets/search.svg';
 
 function PingGroup() {
   const { id } = useParams();
@@ -102,7 +103,7 @@ function PingGroup() {
             value={groupSearch}
             onChange={handleGroupSearch}
         />
-        <span className={styles.search_icon}>🔍</span>
+        <img src={searchIcon} alt="검색" className={styles.search_icon} />
       </div>
 
       {/* 뒤로가기 + 그룹명 */}

@@ -11,6 +11,7 @@ import {
 import styles from "./Friends.module.css";
 import logo from "../assets/logo.png";
 import Hamburger from "../components/Hamburger";
+import searchIcon from '../assets/search.svg';
 
 function Friends() {
   const [mode, setMode] = useState("list"); // list | requests | search
@@ -99,7 +100,7 @@ function Friends() {
             value={friendSearch}
             onChange={handleFriendSearch}
           />
-          <span className={styles.search_icon}>🔍</span>
+          <img src={searchIcon} alt="검색" className={styles.search_icon} />
         </div>
       )}
 
@@ -112,7 +113,7 @@ function Friends() {
             value=""
             readOnly
           />
-          <span className={styles.search_icon}>🔍</span>
+          <img src={searchIcon} alt="검색" className={styles.search_icon} />
         </div>
       )}
 
@@ -125,7 +126,7 @@ function Friends() {
             value={userSearch}
             onChange={handleUserSearch}
           />
-          <span className={styles.search_icon}>🔍</span>
+          <img src={searchIcon} alt="검색" className={styles.search_icon} />
         </div>
       )}
 

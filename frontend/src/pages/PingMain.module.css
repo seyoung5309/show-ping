@@ -54,7 +54,7 @@ input::placeholder {
     height: 35px;
     border-radius: 50px;
     border: 2px solid #FE679C;
-    background: #FFEFF5;
+    background: white;
     padding: 0 40px 0 16px;
     font-family: Pretendard;
     font-size: 12px;
@@ -65,7 +65,8 @@ input::placeholder {
     right: 12px;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 14px;
+    width: 14px;
+    height: 14px;
 }
 
 /* ============================
