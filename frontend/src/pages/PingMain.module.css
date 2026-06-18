@@ -226,6 +226,12 @@ input::placeholder {
     flex-direction: column;
     gap: 8px;
     margin-bottom: 4px;
+
+    /* 애니메이션 초기 상태: 아래에 숨김 + 투명 */
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
 .fab_menu_btn {
@@ -253,6 +259,12 @@ input::placeholder {
     align-items: center;
     justify-content: center;
     box-shadow: 0 4px 12px rgba(254, 103, 156, 0.4);
+}
+
+.fab_menu_open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
 }
 
 /* ============================

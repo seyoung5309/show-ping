@@ -137,18 +137,16 @@ function PingMain() {
         ))}
       </div>
 
-      {/* 우측 하단 + 버튼 */}
+        {/* 우측 하단 + 버튼 */}
         <div className={styles.fab_wrap}>
-        {showFabMenu && (
-            <div className={styles.fab_menu}>
+        <div className={`${styles.fab_menu} ${showFabMenu ? styles.fab_menu_open : ""}`}>
             <button className={styles.fab_menu_btn} onClick={() => navigate("/compare")}>
-                위시리스트 비교
+            위시리스트 비교
             </button>
             <button className={styles.fab_menu_btn} onClick={() => navigate("/ping/add")}>
-                위시리스트 추가
+            위시리스트 추가
             </button>
-            </div>
-        )}
+        </div>
         <button className={styles.fab} onClick={() => setShowFabMenu(!showFabMenu)}>+</button>
         </div>
 
