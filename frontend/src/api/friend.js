@@ -1,4 +1,4 @@
-const BASE_URL = `${import.meta.env.VITE_API_URL}/api/friend`;
+const BASE_URL = `${import.meta.env.VITE_API_URL}/api/friends`;
 const getToken = () => localStorage.getItem("token");
 
 export const getFriends = async (search = "") => {
