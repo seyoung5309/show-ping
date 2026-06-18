@@ -5,6 +5,7 @@ import styles from "./PingMain.module.css";
 import logo from '../assets/logo.png';
 import Hamburger from "../components/Hamburger";
 
+
 function PingMain() {
   const [pings, setPings] = useState([]);
   const [groups, setGroups] = useState([]);
@@ -147,7 +148,9 @@ function PingMain() {
             위시리스트 추가
             </button>
         </div>
-        <button className={styles.fab} onClick={() => setShowFabMenu(!showFabMenu)}>+</button>
+        <button className={styles.fab} onClick={() => setShowFabMenu(!showFabMenu)}>
+          <img src={mainButtonIcon} alt="메뉴 열기" className={styles.fab_icon} />
+        </button>
         </div>
 
       {/* 그룹 추가 모달 */}

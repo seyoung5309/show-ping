@@ -261,6 +261,11 @@ input::placeholder {
     box-shadow: 0 4px 12px rgba(254, 103, 156, 0.4);
 }
 
+.fab_icon {
+    width: 24px;
+    height: 24px;
+}
+
 .fab_menu_open {
     opacity: 1;
     transform: translateY(0);
