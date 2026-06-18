@@ -39,6 +39,7 @@ input::placeholder {
     width: 111px;
     height: 43px;
     aspect-ratio: 111/43;
+    cursor: pointer;
 }
 
 /* ============================
