@@ -4,7 +4,7 @@ import { getPings, getGroups, createGroup, getCategories } from "../api/ping";
 import styles from "./PingMain.module.css";
 import logo from '../assets/logo.png';
 import Hamburger from "../components/Hamburger";
-
+import mainButtonIcon from '../assets/mainButton.svg';
 
 function PingMain() {
   const [pings, setPings] = useState([]);
