@@ -16,6 +16,7 @@ function PingMain() {
   const [newGroupName, setNewGroupName] = useState("");
   const [sort, setSort] = useState("latest");
   const navigate = useNavigate();
+  const [showFabMenu, setShowFabMenu] = useState(false);
 
   useEffect(() => {
     fetchPings();
@@ -137,7 +138,19 @@ function PingMain() {
       </div>
 
       {/* 우측 하단 + 버튼 */}
-      <button className={styles.fab} onClick={() => navigate("/ping/add")}>+</button>
+        <div className={styles.fab_wrap}>
+        {showFabMenu && (
+            <div className={styles.fab_menu}>
+            <button className={styles.fab_menu_btn} onClick={() => navigate("/compare")}>
+                위시리스트 비교
+            </button>
+            <button className={styles.fab_menu_btn} onClick={() => navigate("/ping/add")}>
+                위시리스트 추가
+            </button>
+            </div>
+        )}
+        <button className={styles.fab} onClick={() => setShowFabMenu(!showFabMenu)}>+</button>
+        </div>
 
       {/* 그룹 추가 모달 */}
       {showGroupModal && (

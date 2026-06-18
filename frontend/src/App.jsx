@@ -14,6 +14,7 @@ import SetFirst from "./pages/SetFirst";
 import SetSecond from "./pages/SetSecond";
 import Friends from "./pages/Friends";
 import UserProfile from "./pages/UserProfile";
+import Compare from "./pages/Compare";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/main" element={<PingMain />} />
+            <Route path="/compare" element={<Compare />} />
             <Route path="/group/:id" element={<PingGroup />} />
             <Route path="/ping/add" element={<PingAddUpdate />} />
             <Route path="/ping/update/:id" element={<PingAddUpdate />} />
