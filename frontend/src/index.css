@@ -26,9 +26,12 @@
     box-sizing: border-box;
 }
 
+html,
 body {
+    width: 100%;
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
 }
 
 input::placeholder,
@@ -47,12 +50,14 @@ button {
     display: flex;
     justify-content: center;
     min-height: 100vh;
+    width: 100%;
     background: #f0f0f0;
 }
 
 .app_inner {
     width: 100%;
     max-width: 402px;
+    min-width: 0;
     min-height: 100vh;
     background: #fff;
     border: 1px solid rgba(0, 0, 0, 0.1);
