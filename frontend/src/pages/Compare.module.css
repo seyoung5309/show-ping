@@ -1,0 +1,162 @@
+button {
+    cursor: pointer;
+}
+
+.page {
+    width: 100%;
+    max-width: 402px;
+    min-height: 100dvh;
+    padding: 46px 21px 80px 21px;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100dvh;
+    font-family: Pretendard;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+/* 헤더 */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.logo_img {
+    width: 111px;
+    height: 43px;
+    aspect-ratio: 111/43;
+    cursor: pointer;
+}
+
+/* 타이틀 */
+.title_row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.back_btn {
+    background: none;
+    border: none;
+    font-family: Pretendard;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.5);
+    padding: 0;
+}
+
+.title {
+    font-family: Pretendard;
+    font-size: 16px;
+    font-weight: 600;
+    color: #000;
+}
+
+.subtitle {
+    font-family: Pretendard;
+    font-size: 20px;
+    font-weight: 700;
+    color: #000;
+    text-align: right;
+    margin: 0 0 20px 0;
+}
+
+/* 테이블 */
+.table_wrap {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.table {
+    border-collapse: collapse;
+    min-width: 100%;
+    table-layout: fixed;
+}
+
+/* 헤더 행 */
+.th_label {
+    width: 80px;
+    padding: 12px 8px;
+    border-bottom: 2px solid #FE679C;
+    font-family: Pretendard;
+    font-size: 12px;
+    font-weight: 600;
+    color: #000;
+    text-align: left;
+    vertical-align: bottom;
+}
+
+.th_product {
+    min-width: 120px;
+    padding: 8px;
+    border-bottom: 2px solid #FE679C;
+    text-align: center;
+    vertical-align: bottom;
+}
+
+.product_img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #FFD2E2;
+    display: block;
+    margin: 0 auto 6px auto;
+}
+
+.product_img_empty {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    border: 1px solid #FFD2E2;
+    background: #FFD2E2;
+    margin: 0 auto 6px auto;
+}
+
+.product_name {
+    font-family: Pretendard;
+    font-size: 12px;
+    font-weight: 600;
+    color: #000;
+    display: block;
+    word-break: break-all;
+}
+
+/* 바디 행 */
+.td_label {
+    padding: 16px 8px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    font-family: Pretendard;
+    font-size: 12px;
+    font-weight: 600;
+    color: #000;
+    white-space: nowrap;
+    vertical-align: top;
+}
+
+.td_value {
+    padding: 16px 8px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    font-family: Pretendard;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.7);
+    text-align: center;
+    vertical-align: top;
+    word-break: break-all;
+}
+
+.link {
+    color: #FE679C;
+    text-decoration: underline;
+    font-family: Pretendard;
+    font-size: 12px;
+}
