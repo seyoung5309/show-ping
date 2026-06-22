@@ -86,79 +86,82 @@ function PingGroup() {
   };
 
   return (
-    <div className={styles.page}>
+    <div className="page">
 
       {/* 헤더 */}
-      <div className={styles.header}>
-        <img className={styles.logo_img} src={logo} alt="Show Ping! 로고" onClick={() => navigate("/main")}/>
+      <div className="header">
+        <img className="logo_img" src={logo} alt="Show Ping! 로고" onClick={() => navigate("/main")} />
         <Hamburger />
       </div>
 
       {/* 검색창 */}
-      <div className={styles.search_wrap}>
+      <div className="search_wrap">
         <input
-            className={styles.search}
-            type="text"
-            placeholder="상품 검색"
-            value={groupSearch}
-            onChange={handleGroupSearch}
+          className={styles.search}
+          type="text"
+          placeholder="상품 검색"
+          value={groupSearch}
+          onChange={handleGroupSearch}
         />
-        <img src={searchIcon} alt="검색" className={styles.search_icon} />
+        <img src={searchIcon} alt="검색" className="search_icon" />
       </div>
 
       {/* 뒤로가기 + 그룹명 */}
       <div className={styles.group_header}>
-        <button className={styles.back_btn} onClick={() => navigate(-1)}>
+        <button className="back_btn" onClick={() => navigate(-1)}>
           ← 뒤로가기
         </button>
-        
-        <span className={styles.group_name} onClick={() => { setNewGroupName(group?.name); setShowRenameModal(true); }} style={{ cursor: "pointer" }}>
+        <span
+          className={styles.group_name}
+          onClick={() => { setNewGroupName(group?.name); setShowRenameModal(true); }}
+          style={{ cursor: "pointer" }}
+        >
           {group?.name}
         </span>
+      </div>
 
       {/* 그룹 이름 변경 모달 */}
-        {showRenameModal && (
-        <div className={styles.overlay}>
-            <div className={styles.modal}>
-            <p className={styles.modal_title}>그룹 이름 변경</p>
+      {showRenameModal && (
+        <div className="overlay">
+          <div className="modal">
+            <p className="modal_title">그룹 이름 변경</p>
             <input
-                className={styles.modal_input}
-                type="text"
-                value={newGroupName}
-                onChange={(e) => setNewGroupName(e.target.value)}
+              className={styles.modal_input}
+              type="text"
+              value={newGroupName}
+              onChange={(e) => setNewGroupName(e.target.value)}
             />
             <div className={styles.modal_btns}>
-                <button className={styles.modal_btn_cancel} onClick={() => setShowRenameModal(false)}>취소</button>
-                <button className={styles.modal_btn_confirm} onClick={handleRename}>변경</button>
+              <button className="modal_btn_cancel" onClick={() => setShowRenameModal(false)}>취소</button>
+              <button className="modal_btn_confirm" onClick={handleRename}>변경</button>
             </div>
-            </div>
+          </div>
         </div>
-        )}
-      </div>
+      )}
 
       {!showSelect ? (
         <>
           {/* 그룹 내 위시리스트 2열 그리드 */}
-            <div className={styles.ping_grid}>
+          <div className="ping_grid">
             {filteredGroupPings.map((p) => (
-                <div key={p.id} className={styles.ping_card} onClick={() => navigate(`/ping/update/${p.id}`)}>
+              <div key={p.id} className="ping_card" onClick={() => navigate(`/ping/update/${p.id}`)}>
                 {p.image
-                    ? <img src={p.image} alt={p.name} className={styles.ping_img} />
-                    : <div className={styles.ping_img} />
+                  ? <img src={p.image} alt={p.name} className="ping_img" />
+                  : <div className="ping_img" />
                 }
-                <div className={styles.ping_info}>
-                    <div className={styles.ping_row}>
-                    <span className={styles.ping_name}>{p.name}</span>
-                    <span className={styles.ping_price}>{p.price.toLocaleString()}원</span>
-                    </div>
-                    <p className={styles.ping_comment}>{p.comment}</p>
+                <div className="ping_info">
+                  <div className="ping_row">
+                    <span className="ping_name">{p.name}</span>
+                    <span className="ping_price">{p.price.toLocaleString()}원</span>
+                  </div>
+                  <p className="ping_comment">{p.comment}</p>
                 </div>
-                </div>
+              </div>
             ))}
-            </div>
+          </div>
 
           {/* 우측 하단 + 버튼 */}
-          <button className={styles.fab} onClick={handleOpenSelect}>+</button>
+          <button className="fab" onClick={handleOpenSelect}>+</button>
         </>
       ) : (
         <>
@@ -167,24 +170,24 @@ function PingGroup() {
             {allPings.map((p) => (
               <div key={p.id} className={styles.select_item}>
                 <div className={styles.select_info}>
-                  <span className={styles.ping_name}>{p.name}</span>
+                  <span className="ping_name">{p.name}</span>
                   <div className={styles.select_sub}>
-                    <span className={styles.ping_price}>{p.price.toLocaleString()}원</span>
+                    <span className="ping_price">{p.price.toLocaleString()}원</span>
                     <span className={styles.ping_category}>{p.category}</span>
                   </div>
                 </div>
                 <div
-                  className={`${styles.toggle} ${selectedIds.includes(p.id) ? styles.toggle_on : ""}`}
+                  className={`toggle ${selectedIds.includes(p.id) ? "toggle_on" : ""}`}
                   onClick={() => handleToggle(p.id)}
                 >
-                  <div className={styles.toggle_circle} />
+                  <div className="toggle_circle" />
                 </div>
               </div>
             ))}
           </div>
 
           {/* 뒤로가기 */}
-          <button className={styles.fab} onClick={() => setShowSelect(false)}>←</button>
+          <button className="fab" onClick={() => setShowSelect(false)}>←</button>
         </>
       )}
     </div>

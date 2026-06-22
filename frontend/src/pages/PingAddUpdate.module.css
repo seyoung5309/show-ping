@@ -1,7 +1,3 @@
-button {
-    cursor: pointer;
-}
-
 input,
 select,
 textarea {
@@ -13,40 +9,10 @@ input::placeholder,
 textarea::placeholder {
     color: rgba(0, 0, 0, 0.40);
     font-family: Pretendard;
-    font-size: 12px;
+    font-size: var(--font-sm);
 }
 
-/* ============================
-   페이지 레이아웃
-   ============================ */
-.page {
-    width: 402px;
-    min-height: 874px;
-    padding: 46px 21px 100px 21px;
-    box-sizing: border-box;
-    position: relative;
-}
-
-/* ============================
-   헤더
-   ============================ */
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.logo_img {
-    width: 111px;
-    height: 43px;
-    aspect-ratio: 111/43;
-    cursor: pointer;
-}
-
-/* ============================
-   공개 토글 + 삭제
-   ============================ */
+/* 공개 토글 + 삭제 */
 .top_row {
     display: flex;
     justify-content: space-between;
@@ -61,60 +27,30 @@ textarea::placeholder {
     cursor: pointer;
 }
 
-.toggle {
-    width: 36px;
-    height: 20px;
-    border-radius: 50px;
-    background: rgba(0, 0, 0, 0.2);
-    position: relative;
-    transition: background 0.2s;
-}
-
-.toggle_on {
-    background: #FE679C;
-}
-
-.toggle_circle {
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background: #fff;
-    transition: left 0.2s;
-}
-
-.toggle_on .toggle_circle {
-    left: 18px;
-}
-
 .toggle_text {
     font-family: Pretendard;
-    font-size: 12px;
-    color: #000;
+    font-size: var(--font-sm);
+    color: var(--color-text);
 }
 
 .delete_btn {
     font-family: Pretendard;
-    font-size: 12px;
-    color: rgba(0, 0, 0, 0.5);
+    font-size: var(--font-sm);
+    color: var(--color-text-sub);
     background: none;
     border: none;
 }
 
-/* ============================
-   이미지 업로드
-   ============================ */
+/* 이미지 업로드 */
 .image_box {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 280px;
+    height: clamp(200px, 60vw, 280px);
     border-radius: 10px;
-    border: 2px solid #FE679C;
-    background: #FFD2E2;
+    border: 2px solid var(--color-primary);
+    background: var(--color-light);
     cursor: pointer;
     margin-bottom: 20px;
     overflow: hidden;
@@ -128,12 +64,10 @@ textarea::placeholder {
 
 .image_placeholder {
     font-size: 36px;
-    color: #FE679C;
+    color: var(--color-primary);
 }
 
-/* ============================
-   입력 필드
-   ============================ */
+/* 입력 필드 */
 .field {
     margin-bottom: 16px;
 }
@@ -141,9 +75,9 @@ textarea::placeholder {
 .label {
     display: block;
     font-family: Pretendard;
-    font-size: 14px;
+    font-size: var(--font-md);
     font-weight: 600;
-    color: #000;
+    color: var(--color-text);
     margin-bottom: 8px;
 }
 
@@ -151,11 +85,11 @@ textarea::placeholder {
     width: 100%;
     height: 36px;
     border: none;
-    border-bottom: 1px solid #FE679C;
+    border-bottom: 1px solid var(--color-primary);
     background: transparent;
     font-family: Pretendard;
-    font-size: 12px;
-    color: #000;
+    font-size: var(--font-sm);
+    color: var(--color-text);
     padding: 0;
 }
 
@@ -166,14 +100,13 @@ textarea::placeholder {
     border: 1px solid rgba(0, 0, 0, 0.2);
     padding: 10px;
     font-family: Pretendard;
-    font-size: 12px;
-    color: #000;
+    font-size: var(--font-sm);
+    color: var(--color-text);
     resize: none;
+    box-sizing: border-box;
 }
 
-/* ============================
-   사용자 정의 속성
-   ============================ */
+/* 사용자 정의 속성 */
 .property_row {
     display: flex;
     align-items: center;
@@ -184,8 +117,8 @@ textarea::placeholder {
 .property_select {
     height: 32px;
     border-radius: 8px;
-    border: 1px solid #FE679C;
-    background: #FFD2E2;
+    border: 1px solid var(--color-primary);
+    background: var(--color-light);
     font-family: Pretendard;
     font-size: 11px;
     padding: 0 4px;
@@ -199,7 +132,8 @@ textarea::placeholder {
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     background: transparent;
     font-family: Pretendard;
-    font-size: 12px;
+    font-size: var(--font-sm);
+    min-width: 0;
 }
 
 .property_value {
@@ -209,7 +143,7 @@ textarea::placeholder {
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     background: transparent;
     font-family: Pretendard;
-    font-size: 12px;
+    font-size: var(--font-sm);
     text-align: right;
 }
 
@@ -217,81 +151,23 @@ textarea::placeholder {
     background: none;
     border: none;
     font-family: Pretendard;
-    font-size: 12px;
-    color: #FE679C;
+    font-size: var(--font-sm);
+    color: var(--color-primary);
     padding: 0;
     margin-top: 4px;
 }
 
-/* ============================
-   완료 버튼
-   ============================ */
-.submit_wrap {
-    position: fixed;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 402px;
-    padding: 16px 21px;
-    background: #fff;
-    box-sizing: border-box;
-}
-
-.submit_btn {
-    width: 100%;
-    height: 45px;
-    border-radius: 10px;
-    border: 1px solid #FE679C;
-    background: #FFD2E2;
-    font-family: Pretendard;
-    font-size: 16px;
-    font-weight: 500;
-    color: #000;
-}
-
-/* ============================
-   모달
-   ============================ */
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 999;
-}
-
-.modal {
-    width: 306px;
-    background: #fff;
-    border-radius: 12px;
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    text-align: center;
-}
-
+/* 모달 버튼 (PingAddUpdate만의 스타일) */
 .modal_btn {
     padding: 8px 24px;
     border-radius: 8px;
-    border: 1px solid #FE679C;
-    background: #FFD2E2;
+    border: 1px solid var(--color-primary);
+    background: var(--color-light);
     font-family: Pretendard;
-    font-size: 12px;
+    font-size: var(--font-sm);
 }
 
+/* 뒤로가기 margin 오버라이드 */
 .back_btn {
-    background: none;
-    border: none;
-    font-family: Pretendard;
-    font-size: 12px;
-    color: rgba(0, 0, 0, 0.5);
-    padding: 0;
     margin-bottom: 12px;
 }

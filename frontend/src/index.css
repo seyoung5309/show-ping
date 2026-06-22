@@ -1,5 +1,401 @@
+/* ============================
+   CSS 변수
+   ============================ */
+:root {
+    --max-width: 402px;
+    --page-padding-x: clamp(16px, 5vw, 21px);
+    --page-padding-top: clamp(32px, 5vh, 46px);
+    --page-padding-bottom: 80px;
+
+    --font-xs: clamp(9px, 2.2vw, 10px);
+    --font-sm: clamp(10px, 2.8vw, 12px);
+    --font-md: clamp(12px, 3.2vw, 14px);
+    --font-lg: clamp(14px, 3.8vw, 16px);
+    --font-xl: clamp(17px, 4.8vw, 20px);
+    --font-2xl: clamp(20px, 5.5vw, 24px);
+
+    --color-primary: #FE679C;
+    --color-light: #FFD2E2;
+    --color-bg: #FFEFF5;
+    --color-border: rgba(254, 103, 156, 0.4);
+    --color-text: #000;
+    --color-text-sub: rgba(0, 0, 0, 0.5);
+    --color-text-sub2: rgba(0, 0, 0, 0.6);
+}
+
+/* ============================
+   공통 리셋
+   ============================ */
+* {
+    box-sizing: border-box;
+}
+
 body {
-    justify-self: center;
-    width: 402px;
-    height: 874px;
+    margin: 0;
+    padding: 0;
+    background: #f0f0f0;
+}
+
+/* ============================
+   공통 페이지 레이아웃
+   ============================ */
+.page {
+    width: 100%;
+    max-width: var(--max-width);
+    min-height: 100dvh;
+    padding: var(--page-padding-top) var(--page-padding-x) var(--page-padding-bottom);
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+/* ============================
+   공통 헤더
+   ============================ */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.logo_img {
+    width: clamp(80px, 27vw, 111px);
+    height: auto;
+    aspect-ratio: 111/43;
+    cursor: pointer;
+}
+
+/* ============================
+   공통 검색창
+   ============================ */
+.search_wrap {
+    position: relative;
+    margin-bottom: 16px;
+}
+
+.search {
+    width: 100%;
+    height: 35px;
+    border-radius: 50px;
+    border: 2px solid var(--color-primary);
+    background: var(--color-bg);
+    padding: 0 40px 0 16px;
+    font-family: Pretendard;
+    font-size: var(--font-sm);
+    box-sizing: border-box;
+}
+
+.search_icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 14px;
+    height: 14px;
+}
+
+/* ============================
+   공통 뒤로가기 버튼
+   ============================ */
+.back_btn {
+    background: none;
+    border: none;
+    font-family: Pretendard;
+    font-size: var(--font-sm);
+    color: var(--color-text-sub);
+    padding: 0;
+    cursor: pointer;
+}
+
+/* ============================
+   공통 모달
+   ============================ */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.modal {
+    width: min(306px, 90vw);
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.modal_title {
+    font-family: Pretendard;
+    font-size: var(--font-lg);
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0;
+}
+
+.modal_btn_cancel {
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background: #fff;
+    font-family: Pretendard;
+    font-size: var(--font-sm);
+    cursor: pointer;
+}
+
+.modal_btn_confirm {
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--color-primary);
+    background: var(--color-light);
+    font-family: Pretendard;
+    font-size: var(--font-sm);
+    cursor: pointer;
+}
+
+/* ============================
+   공통 ping 그리드
+   ============================ */
+.ping_grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.ping_card {
+    border-radius: 10px;
+    border: 2px solid var(--color-primary);
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+}
+
+.ping_img {
+    width: 100%;
+    height: clamp(120px, 38vw, 174px);
+    background: var(--color-light);
+    object-fit: cover;
+}
+
+.ping_info {
+    padding: 8px 12px;
+    background: #FDFDFD;
+}
+
+.ping_row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.ping_name {
+    font-family: Pretendard;
+    font-size: var(--font-sm);
+    font-weight: 500;
+    color: var(--color-text);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 55%;
+}
+
+.ping_price {
+    font-family: Pretendard;
+    font-size: var(--font-sm);
+    font-weight: 500;
+    color: var(--color-text);
+}
+
+.ping_comment {
+    font-family: Pretendard;
+    font-size: var(--font-xs);
+    color: var(--color-text-sub);
+    margin: 0;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+/* ============================
+   공통 FAB
+   ============================ */
+.fab_wrap {
+    position: fixed;
+    bottom: 32px;
+    right: max(32px, calc((100vw - var(--max-width)) / 2 + 32px));
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.fab {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    border: none;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(254, 103, 156, 0.4);
+    cursor: pointer;
+}
+
+.fab_icon {
+    width: 24px;
+    height: 24px;
+}
+
+/* ============================
+   공통 완료/제출 버튼
+   ============================ */
+.submit_wrap {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: var(--max-width);
+    padding: 16px var(--page-padding-x);
+    background: #fff;
+    box-sizing: border-box;
+}
+
+.submit_btn {
+    width: 100%;
+    height: 45px;
+    border-radius: 10px;
+    border: 1px solid var(--color-primary);
+    background: var(--color-light);
+    font-family: Pretendard;
+    font-size: var(--font-lg);
+    font-weight: 500;
+    color: var(--color-text);
+    cursor: pointer;
+}
+
+/* ============================
+   공통 토글
+   ============================ */
+.toggle {
+    width: 36px;
+    height: 20px;
+    border-radius: 50px;
+    background: rgba(0, 0, 0, 0.2);
+    position: relative;
+    transition: background 0.2s;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.toggle_on {
+    background: var(--color-primary);
+}
+
+.toggle_circle {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #fff;
+    transition: left 0.2s;
+}
+
+.toggle_on .toggle_circle {
+    left: 18px;
+}
+
+/* ============================
+   공통 카테고리 태그
+   ============================ */
+.category_tag {
+    padding: 6px 14px;
+    border-radius: 50px;
+    border: 1px solid var(--color-primary);
+    background: var(--color-light);
+    font-family: Pretendard;
+    font-size: var(--font-sm);
+    color: var(--color-text);
+}
+
+/* ============================
+   공통 그룹 썸네일
+   ============================ */
+.group_wrap {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.group_item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+.group_thumb {
+    width: 80px;
+    height: 50px;
+    border-radius: 10px;
+    border: 2px solid var(--color-primary);
+    background: var(--color-light);
+    overflow: hidden;
+}
+
+.group_thumb_img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.group_name {
+    font-family: Pretendard;
+    font-size: 11px;
+    color: var(--color-text);
+    margin: 0;
+    text-align: center;
+}
+
+/* ============================
+   공통 빈 상태
+   ============================ */
+.empty {
+    font-family: Pretendard;
+    font-size: var(--font-sm);
+    color: var(--color-text-sub);
+    text-align: center;
+    margin-top: 40px;
+}
+
+/* ============================
+   공통 input placeholder
+   ============================ */
+input::placeholder,
+textarea::placeholder {
+    color: var(--color-text-sub);
+    font-family: Pretendard;
+    font-size: var(--font-sm);
+}
+
+button {
+    cursor: pointer;
 }

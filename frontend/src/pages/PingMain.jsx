@@ -19,7 +19,7 @@ function PingMain() {
   const [sort, setSort] = useState("latest");
   const navigate = useNavigate();
   const [showFabMenu, setShowFabMenu] = useState(false);
-  const [selectedPings, setSelectedPings] = useState([]); // 비교 선택 state
+  const [selectedPings, setSelectedPings] = useState([]);
 
   useEffect(() => {
     fetchPings();
@@ -66,9 +66,8 @@ function PingMain() {
     fetchPings(search, categoryId, e.target.value);
   };
 
-  // 비교 선택 토글
   const handleSelectCompare = (e, pingId) => {
-    e.stopPropagation(); // 카드 클릭 이벤트 방지
+    e.stopPropagation();
     setSelectedPings((prev) =>
       prev.includes(pingId)
         ? prev.filter((id) => id !== pingId)
@@ -76,7 +75,6 @@ function PingMain() {
     );
   };
 
-  // 비교 페이지로 이동
   const handleCompare = () => {
     if (selectedPings.length < 2) return alert("비교할 상품을 2개 이상 선택해주세요.");
     navigate("/compare", { state: { pingIds: selectedPings } });
@@ -84,16 +82,16 @@ function PingMain() {
   };
 
   return (
-    <div className={styles.page}>
+    <div className="page">
 
       {/* 상단 헤더 */}
-      <div className={styles.header}>
-        <img className={styles.logo_img} src={logo} alt="Show Ping! 로고" onClick={() => navigate("/main")}/>
+      <div className="header">
+        <img className="logo_img" src={logo} alt="Show Ping! 로고" onClick={() => navigate("/main")} />
         <Hamburger />
       </div>
 
       {/* 검색창 */}
-      <div className={styles.search_wrap}>
+      <div className="search_wrap">
         <input
           className={styles.search}
           type="text"
@@ -101,23 +99,23 @@ function PingMain() {
           value={search}
           onChange={handleSearch}
         />
-        <img src={searchIcon} alt="검색" className={styles.search_icon} />
+        <img src={searchIcon} alt="검색" className="search_icon" />
       </div>
 
       {/* 그룹 목록 */}
-      <div className={styles.group_wrap}>
-        <div className={styles.group_item}>
+      <div className="group_wrap">
+        <div className="group_item">
           <div className={styles.group_add} onClick={() => setShowGroupModal(true)}>+</div>
         </div>
         {groups.map((g) => (
-          <div key={g.id} className={styles.group_item} onClick={() => navigate(`/group/${g.id}`)}>
-            <div className={styles.group_thumb}>
+          <div key={g.id} className="group_item" onClick={() => navigate(`/group/${g.id}`)}>
+            <div className="group_thumb">
               {g.image
-                ? <img src={g.image} alt={g.name} className={styles.group_thumb_img} />
+                ? <img src={g.image} alt={g.name} className="group_thumb_img" />
                 : <div />
               }
             </div>
-            <p className={styles.group_name}>{g.name}</p>
+            <p className="group_name">{g.name}</p>
           </div>
         ))}
       </div>
@@ -137,33 +135,32 @@ function PingMain() {
       </div>
 
       {/* 위시리스트 목록 */}
-      <div className={styles.ping_grid}>
+      <div className="ping_grid">
         {pings.map((p) => (
-          <div key={p.id} className={styles.ping_card} onClick={() => navigate(`/ping/update/${p.id}`)}>
+          <div key={p.id} className="ping_card" onClick={() => navigate(`/ping/update/${p.id}`)}>
             {p.image
-              ? <img src={p.image} alt={p.name} className={styles.ping_img} />
-              : <div className={styles.ping_img}></div>
+              ? <img src={p.image} alt={p.name} className="ping_img" />
+              : <div className="ping_img"></div>
             }
-            {/* 비교 선택 버튼 */}
             <button
               className={`${styles.compare_btn} ${selectedPings.includes(p.id) ? styles.compare_btn_active : ""}`}
               onClick={(e) => handleSelectCompare(e, p.id)}
             >
               {selectedPings.includes(p.id) ? "선택중" : "비교 선택"}
             </button>
-            <div className={styles.ping_info}>
-              <div className={styles.ping_row}>
-                <span className={styles.ping_name}>{p.name}</span>
-                <span className={styles.ping_price}>{p.price.toLocaleString()}원</span>
+            <div className="ping_info">
+              <div className="ping_row">
+                <span className="ping_name">{p.name}</span>
+                <span className="ping_price">{p.price.toLocaleString()}원</span>
               </div>
-              <p className={styles.ping_comment}>{p.comment}</p>
+              <p className="ping_comment">{p.comment}</p>
             </div>
           </div>
         ))}
       </div>
 
       {/* 우측 하단 버튼 */}
-      <div className={styles.fab_wrap}>
+      <div className="fab_wrap">
         <div className={`${styles.fab_menu} ${showFabMenu ? styles.fab_menu_open : ""}`}>
           <button className={styles.fab_menu_btn} onClick={handleCompare}>
             위시리스트 비교 {selectedPings.length > 0 && `(${selectedPings.length})`}
@@ -172,16 +169,16 @@ function PingMain() {
             위시리스트 추가
           </button>
         </div>
-        <button className={styles.fab} onClick={() => setShowFabMenu(!showFabMenu)}>
-          <img src={mainButtonIcon} alt="메뉴 열기" className={styles.fab_icon} />
+        <button className="fab" onClick={() => setShowFabMenu(!showFabMenu)}>
+          <img src={mainButtonIcon} alt="메뉴 열기" className="fab_icon" />
         </button>
       </div>
 
       {/* 그룹 추가 모달 */}
       {showGroupModal && (
-        <div className={styles.overlay}>
-          <div className={styles.modal}>
-            <p className={styles.modal_title}>그룹 추가</p>
+        <div className="overlay">
+          <div className="modal">
+            <p className="modal_title">그룹 추가</p>
             <input
               className={styles.modal_input}
               type="text"
@@ -190,8 +187,8 @@ function PingMain() {
               onChange={(e) => setNewGroupName(e.target.value)}
             />
             <div className={styles.modal_btns}>
-              <button className={styles.modal_btn_cancel} onClick={() => setShowGroupModal(false)}>취소</button>
-              <button className={styles.modal_btn_confirm} onClick={handleCreateGroup}>추가</button>
+              <button className="modal_btn_cancel" onClick={() => setShowGroupModal(false)}>취소</button>
+              <button className="modal_btn_confirm" onClick={handleCreateGroup}>추가</button>
             </div>
           </div>
         </div>
@@ -199,9 +196,9 @@ function PingMain() {
 
       {/* 카테고리 모달 */}
       {showCategoryModal && (
-        <div className={styles.overlay}>
-          <div className={styles.modal}>
-            <p className={styles.modal_title}>카테고리</p>
+        <div className="overlay">
+          <div className="modal">
+            <p className="modal_title">카테고리</p>
             <div className={styles.category_list}>
               <button className={styles.category_item} onClick={() => handleCategory("")}>전체</button>
               {categories.map((c) => (
@@ -210,7 +207,7 @@ function PingMain() {
                 </button>
               ))}
             </div>
-            <button className={styles.modal_btn_cancel} onClick={() => setShowCategoryModal(false)}>닫기</button>
+            <button className="modal_btn_cancel" onClick={() => setShowCategoryModal(false)}>닫기</button>
           </div>
         </div>
       )}
