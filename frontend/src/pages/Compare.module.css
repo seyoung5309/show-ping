@@ -97,6 +97,7 @@ button {
 
 .th_product {
     min-width: 120px;
+    width: 120px;
     padding: 8px;
     border-bottom: 2px solid #FE679C;
     text-align: center;
@@ -128,7 +129,10 @@ button {
     font-weight: 600;
     color: #000;
     display: block;
-    word-break: break-all;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 80px;
 }
 
 /* 바디 행 */
