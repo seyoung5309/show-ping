@@ -3,7 +3,7 @@
    ============================ */
 :root {
     --max-width: 402px;
-    --page-padding-x: clamp(16px, 5vw, 21px);
+    --page-padding-x: clamp(20px, 6vw, 28px);
     --page-padding-top: clamp(32px, 5vh, 46px);
     --page-padding-bottom: 80px;
 
@@ -30,23 +30,19 @@
     box-sizing: border-box;
 }
 
-body {
-    margin: 0;
-    padding: 0;
-    background: #f0f0f0;
-}
-
 /* ============================
    공통 페이지 레이아웃
    ============================ */
 .page {
     width: 100%;
-    max-width: var(--max-width);
+    max-width: 402px;
     min-height: 100dvh;
     padding: var(--page-padding-top) var(--page-padding-x) var(--page-padding-bottom);
     box-sizing: border-box;
     margin: 0 auto;
 }
+
+s
 
 /* ============================
    공통 헤더
