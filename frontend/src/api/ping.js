@@ -9,8 +9,15 @@ export const getPings = async (
 ) => {
   const res = await fetch(
     `${BASE_URL}/pings?search=${search}&categoryId=${categoryId}&sort=${sort}`,
-    { headers: { Authorization: `Bearer ${getToken()}` } },
+    {
+      headers: { Authorization: `Bearer ${getToken()}` },
+    },
   );
+  if (res.status === 403 || res.status === 401) {
+    localStorage.removeItem("token");
+    window.location.href = "/login";
+    return [];
+  }
   return res.json();
 };
 
