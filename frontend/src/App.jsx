@@ -19,20 +19,8 @@ import Compare from "./pages/Compare";
 function App() {
   return (
     <BrowserRouter>
-      <div style={{
-        display: "flex",
-        justifyContent: "center",
-        minHeight: "100vh",
-        backgroundColor: "#f0f0f0",
-      }}>
-        <div style={{
-          width: "402px",
-          minHeight: "100vh",
-          backgroundColor: "#fff",
-          border: "1px solid rgba(0,0,0,0.1)",
-          position: "relative",
-          overflow: "hidden",
-        }}>
+      <div className="app_outer">
+        <div className="app_inner">
           <Routes>
             <Route path="/" element={<Splash />} />       
             <Route path="/login" element={<Login />} />

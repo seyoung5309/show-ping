@@ -399,3 +399,21 @@ textarea::placeholder {
 button {
     cursor: pointer;
 }
+
+/* App 레이아웃 */
+.app_outer {
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    background: #f0f0f0;
+}
+
+.app_inner {
+    width: 100%;
+    max-width: 402px;
+    min-height: 100vh;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
