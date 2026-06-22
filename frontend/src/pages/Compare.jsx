@@ -12,19 +12,25 @@ function Compare() {
   const [pings, setPings] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    if (pingIds.length === 0) {
-      navigate("/main");
-      return;
+    useEffect(() => {
+    if (!pingIds || pingIds.length === 0) {
+        navigate("/main");
+        return;
     }
     fetchPings();
-  }, []);
+    }, []);
 
-  const fetchPings = async () => {
-    const results = await Promise.all(pingIds.map((id) => getPing(id)));
-    setPings(results);
-    setLoading(false);
-  };
+    const fetchPings = async () => {
+    try {
+        const results = await Promise.all(pingIds.map((id) => getPing(id)));
+        setPings(results);
+    } catch (err) {
+        console.error(err.message);
+        navigate("/main");
+    } finally {
+        setLoading(false);
+    }
+    };
 
   // 모든 상품의 속성 키 합집합
   const allPropertyNames = [
