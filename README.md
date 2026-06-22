@@ -38,6 +38,10 @@ School Database Programming Project
     <td>데이터 베이스</td>
     <td>MySQL</td>
   </tr>
+  <tr>
+    <td>배포</td>
+    <td>Render, Vercel, Railway, Cloudinary</td>
+  </tr>
 </table>
 
 ---
