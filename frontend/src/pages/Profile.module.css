@@ -3,13 +3,14 @@ button {
 }
 
 .page {
-    width: 402px;
-    min-height: 874px;
-    padding: 46px 21px 80px 21px;
+    width: 100%;
+    max-width: 402px;
+    min-height: 100dvh;
+    padding: var(--page-padding-top) var(--page-padding-x) var(--page-padding-bottom);
     box-sizing: border-box;
+    margin: 0 auto;
 }
 
-/* 헤더 */
 .header {
     display: flex;
     justify-content: space-between;
@@ -18,8 +19,8 @@ button {
 }
 
 .logo_img {
-    width: 111px;
-    height: 43px;
+    width: clamp(80px, 27vw, 111px);
+    height: auto;
     aspect-ratio: 111/43;
     cursor: pointer;
 }
@@ -38,19 +39,19 @@ button {
 }
 
 .profile_img {
-    width: 90px;
-    height: 90px;
+    width: clamp(70px, 22vw, 90px);
+    height: clamp(70px, 22vw, 90px);
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid #FE679C;
+    border: 2px solid var(--color-primary);
 }
 
 .profile_img_empty {
-    width: 90px;
-    height: 90px;
+    width: clamp(70px, 22vw, 90px);
+    height: clamp(70px, 22vw, 90px);
     border-radius: 50%;
-    border: 2px solid #FE679C;
-    background: #FFD2E2;
+    border: 2px solid var(--color-primary);
+    background: var(--color-light);
 }
 
 .profile_info {
@@ -58,20 +59,21 @@ button {
     flex-direction: column;
     gap: 6px;
     flex: 1;
+    min-width: 0;
 }
 
 .nickname {
     font-family: Pretendard;
-    font-size: 20px;
+    font-size: var(--font-xl);
     font-weight: 600;
-    color: #000;
+    color: var(--color-text);
     margin: 0;
 }
 
 .comment {
     font-family: Pretendard;
-    font-size: 12px;
-    color: rgba(0, 0, 0, 0.6);
+    font-size: var(--font-sm);
+    color: var(--color-text-sub2);
     margin: 0;
     word-break: break-all;
 }
@@ -84,8 +86,8 @@ button {
 
 .friends {
     font-family: Pretendard;
-    font-size: 12px;
-    color: #000;
+    font-size: var(--font-sm);
+    color: var(--color-text);
     cursor: pointer;
 }
 
@@ -97,11 +99,10 @@ button {
 
 .is_public {
     font-family: Pretendard;
-    font-size: 12px;
-    color: rgba(0, 0, 0, 0.5);
+    font-size: var(--font-sm);
+    color: var(--color-text-sub);
 }
 
-/* 토글 */
 .toggle {
     width: 36px;
     height: 20px;
@@ -114,7 +115,7 @@ button {
 }
 
 .toggle_on {
-    background: #FE679C;
+    background: var(--color-primary);
 }
 
 .toggle_circle {
@@ -144,11 +145,17 @@ button {
 .category_tag {
     padding: 6px 14px;
     border-radius: 50px;
-    border: 1px solid #FE679C;
-    background: #FFD2E2;
+    border: 1px solid var(--color-primary);
+    background: var(--color-light);
     font-family: Pretendard;
-    font-size: 12px;
-    color: #000;
+    font-size: var(--font-sm);
+    color: var(--color-text);
+}
+
+.no_category {
+    font-family: Pretendard;
+    font-size: var(--font-sm);
+    color: rgba(0, 0, 0, 0.4);
 }
 
 /* 그룹 목록 */
@@ -158,6 +165,7 @@ button {
     align-items: flex-start;
     margin-bottom: 20px;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .group_item {
@@ -172,16 +180,19 @@ button {
     width: 80px;
     height: 50px;
     border-radius: 10px;
-    border: 2px solid #FE679C;
-    background: #FFD2E2;
+    border: 2px solid var(--color-primary);
+    background: var(--color-light);
     overflow: hidden;
 }
 
-.group_thumb img {
+/* FIX 1: .group_thumb img(태그 셀렉터)와 중복/충돌하던 규칙을 제거하고
+   실제 JSX에서 쓰는 .group_thumb_img 클래스 하나로 통합 (border-radius 8px가 항상 적용되도록) */
+.group_thumb_img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 10px;
+    object-position: center;
+    border-radius: 8px;
     cursor: pointer;
 }
 
@@ -189,12 +200,12 @@ button {
     width: 80px;
     height: 50px;
     border-radius: 10px;
-    border: 2px solid #FE679C;
-    background: #FFD2E2;
+    border: 2px solid var(--color-primary);
+    background: var(--color-light);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #FE679C;
+    color: var(--color-primary);
     font-size: 24px;
     cursor: pointer;
 }
@@ -202,9 +213,47 @@ button {
 .group_name {
     font-family: Pretendard;
     font-size: 11px;
-    color: #000;
+    color: var(--color-text);
     margin: 0;
     text-align: center;
+}
+
+/* 필터 */
+.filter_wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+/* FIX 3: select 기본 화살표/스타일 제거 (브라우저별 차이 방지) */
+.sort_btn {
+    height: 28px;
+    padding: 0 28px 0 12px;
+    border-radius: 50px;
+    border: 2px solid var(--color-primary);
+    background: var(--color-bg);
+    font-family: Pretendard;
+    font-size: var(--font-sm);
+    color: var(--color-primary);
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23FE679C' stroke-width='1.5' fill='none' fill-rule='evenodd'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+}
+
+.category_btn {
+    height: 28px;
+    padding: 0 16px;
+    border-radius: 50px;
+    border: 2px solid var(--color-primary);
+    background: var(--color-bg);
+    font-family: Pretendard;
+    font-size: var(--font-sm);
+    color: var(--color-primary);
 }
 
 /* 위시리스트 그리드 */
@@ -216,15 +265,15 @@ button {
 
 .ping_card {
     border-radius: 10px;
-    border: 2px solid #FE679C;
+    border: 2px solid var(--color-primary);
     overflow: hidden;
     cursor: pointer;
 }
 
 .ping_img {
     width: 100%;
-    height: 150px;
-    background: #FFD2E2;
+    height: clamp(120px, 38vw, 150px);
+    background: var(--color-light);
     object-fit: cover;
 }
 
@@ -240,24 +289,31 @@ button {
     margin-bottom: 4px;
 }
 
+/* FIX 2: flex item 기본 min-width:auto로 인해 말줄임이 안 먹던 문제 */
 .ping_name {
     font-family: Pretendard;
-    font-size: 12px;
+    font-size: var(--font-sm);
     font-weight: 500;
-    color: #000;
+    color: var(--color-text);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 55%;
+    min-width: 0;
 }
 
 .ping_price {
     font-family: Pretendard;
-    font-size: 12px;
+    font-size: var(--font-sm);
     font-weight: 500;
-    color: #000;
+    color: var(--color-text);
+    flex-shrink: 0;
 }
 
 .ping_comment {
     font-family: Pretendard;
-    font-size: 10px;
-    color: rgba(0, 0, 0, 0.5);
+    font-size: var(--font-xs);
+    color: var(--color-text-sub);
     margin: 0;
     overflow: hidden;
     display: -webkit-box;
@@ -265,45 +321,7 @@ button {
     -webkit-box-orient: vertical;
 }
 
-.no_category {
-    font-family: Pretendard;
-    font-size: 12px;
-    color: rgba(0, 0, 0, 0.4);
-}
-
-.group_thumb_img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    border-radius: 8px;
-}
-
-.filter_wrap {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 12px;
-}
-
-.sort_btn {
-    height: 28px;
-    padding: 0 12px;
-    border-radius: 50px;
-    border: 2px solid #FE679C;
-    background: #FFEFF5;
-    font-family: Pretendard;
-    font-size: 12px;
-    color: #FE679C;
-    cursor: pointer;
-}
-
-.no_category {
-    font-family: Pretendard;
-    font-size: 12px;
-    color: rgba(0, 0, 0, 0.4);
-}
-
+/* 모달 */
 .overlay {
     position: fixed;
     top: 0;
@@ -318,7 +336,7 @@ button {
 }
 
 .modal {
-    width: 306px;
+    width: min(306px, 90vw);
     background: #fff;
     border-radius: 12px;
     padding: 24px;
@@ -329,9 +347,9 @@ button {
 
 .modal_title {
     font-family: Pretendard;
-    font-size: 16px;
+    font-size: var(--font-lg);
     font-weight: 600;
-    color: #000;
+    color: var(--color-text);
     margin: 0;
 }
 
@@ -346,11 +364,11 @@ button {
 .category_item {
     padding: 6px 12px;
     border-radius: 50px;
-    border: 1px solid #FE679C;
-    background: #FFEFF5;
+    border: 1px solid var(--color-primary);
+    background: var(--color-bg);
     font-family: Pretendard;
-    font-size: 12px;
-    color: #FE679C;
+    font-size: var(--font-sm);
+    color: var(--color-primary);
 }
 
 .modal_btn_cancel {
@@ -359,25 +377,5 @@ button {
     border: 1px solid rgba(0, 0, 0, 0.2);
     background: #fff;
     font-family: Pretendard;
-    font-size: 12px;
-}
-
-/* ============================
-   카테고리 버튼
-   ============================ */
-.category_wrap {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 12px;
-}
-
-.category_btn {
-    height: 28px;
-    padding: 0 16px;
-    border-radius: 50px;
-    border: 2px solid #FE679C;
-    background: #FFEFF5;
-    font-family: Pretendard;
-    font-size: 12px;
-    color: #FE679C;
+    font-size: var(--font-sm);
 }

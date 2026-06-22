@@ -122,24 +122,24 @@ function PingAddUpdate() {
   };
 
   return (
-    <div className="page">
+    <div className={styles.page}>
 
       {/* 헤더 */}
-      <div className="header">
-        <img className="logo_img" src={logo} alt="Show Ping! 로고" onClick={() => navigate("/main")} />
+      <div className={styles.header}>
+        <img className={styles.logo_img} src={logo} alt="Show Ping! 로고" onClick={() => navigate("/main")} />
         <Hamburger />
       </div>
 
       {/* 뒤로가기 */}
-      <button className={`back_btn ${styles.back_btn}`} onClick={() => navigate(-1)}>
+      <button className={styles.back_btn} onClick={() => navigate(-1)}>
         ← 뒤로가기
       </button>
 
       {/* 공개 토글 + 삭제 버튼 */}
       <div className={styles.top_row}>
         <div className={styles.toggle_wrap} onClick={handleTogglePublic}>
-          <div className={`toggle ${isPublic ? "toggle_on" : ""}`}>
-            <div className="toggle_circle" />
+          <div className={`${styles.toggle} ${isPublic ? styles.toggle_on : ""}`}>
+            <div className={styles.toggle_circle} />
           </div>
           <span className={styles.toggle_text}>{isPublic ? "공개중" : "비공개"}</span>
         </div>
@@ -259,14 +259,14 @@ function PingAddUpdate() {
       </div>
 
       {/* 완료 버튼 */}
-      <div className="submit_wrap">
-        <button className="submit_btn" onClick={handleSubmit}>완료</button>
+      <div className={styles.submit_wrap}>
+        <button className={styles.submit_btn} onClick={handleSubmit}>완료</button>
       </div>
 
       {/* 모달 */}
       {modal && (
-        <div className="overlay">
-          <div className="modal">
+        <div className={styles.overlay}>
+          <div className={styles.modal}>
             <p>{modal}</p>
             <button className={styles.modal_btn} onClick={() => setModal("")}>확인</button>
           </div>

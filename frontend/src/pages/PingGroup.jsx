@@ -86,16 +86,16 @@ function PingGroup() {
   };
 
   return (
-    <div className="page">
+    <div className={styles.page}>
 
       {/* 헤더 */}
-      <div className="header">
-        <img className="logo_img" src={logo} alt="Show Ping! 로고" onClick={() => navigate("/main")} />
+      <div className={styles.header}>
+        <img className={styles.logo_img} src={logo} alt="Show Ping! 로고" onClick={() => navigate("/main")} />
         <Hamburger />
       </div>
 
       {/* 검색창 */}
-      <div className="search_wrap">
+      <div className={styles.search_wrap}>
         <input
           className={styles.search}
           type="text"
@@ -103,12 +103,12 @@ function PingGroup() {
           value={groupSearch}
           onChange={handleGroupSearch}
         />
-        <img src={searchIcon} alt="검색" className="search_icon" />
+        <img src={searchIcon} alt="검색" className={styles.search_icon} />
       </div>
 
       {/* 뒤로가기 + 그룹명 */}
       <div className={styles.group_header}>
-        <button className="back_btn" onClick={() => navigate(-1)}>
+        <button className={styles.back_btn} onClick={() => navigate(-1)}>
           ← 뒤로가기
         </button>
         <span
@@ -122,9 +122,9 @@ function PingGroup() {
 
       {/* 그룹 이름 변경 모달 */}
       {showRenameModal && (
-        <div className="overlay">
-          <div className="modal">
-            <p className="modal_title">그룹 이름 변경</p>
+        <div className={styles.overlay}>
+          <div className={styles.modal}>
+            <p className={styles.modal_title}>그룹 이름 변경</p>
             <input
               className={styles.modal_input}
               type="text"
@@ -132,8 +132,8 @@ function PingGroup() {
               onChange={(e) => setNewGroupName(e.target.value)}
             />
             <div className={styles.modal_btns}>
-              <button className="modal_btn_cancel" onClick={() => setShowRenameModal(false)}>취소</button>
-              <button className="modal_btn_confirm" onClick={handleRename}>변경</button>
+              <button className={styles.modal_btn_cancel} onClick={() => setShowRenameModal(false)}>취소</button>
+              <button className={styles.modal_btn_confirm} onClick={handleRename}>변경</button>
             </div>
           </div>
         </div>
@@ -142,26 +142,26 @@ function PingGroup() {
       {!showSelect ? (
         <>
           {/* 그룹 내 위시리스트 2열 그리드 */}
-          <div className="ping_grid">
+          <div className={styles.ping_grid}>
             {filteredGroupPings.map((p) => (
-              <div key={p.id} className="ping_card" onClick={() => navigate(`/ping/update/${p.id}`)}>
+              <div key={p.id} className={styles.ping_card} onClick={() => navigate(`/ping/update/${p.id}`)}>
                 {p.image
-                  ? <img src={p.image} alt={p.name} className="ping_img" />
-                  : <div className="ping_img" />
+                  ? <img src={p.image} alt={p.name} className={styles.ping_img} />
+                  : <div className={styles.ping_img} />
                 }
-                <div className="ping_info">
-                  <div className="ping_row">
-                    <span className="ping_name">{p.name}</span>
-                    <span className="ping_price">{p.price.toLocaleString()}원</span>
+                <div className={styles.ping_info}>
+                  <div className={styles.ping_row}>
+                    <span className={styles.ping_name}>{p.name}</span>
+                    <span className={styles.ping_price}>{p.price.toLocaleString()}원</span>
                   </div>
-                  <p className="ping_comment">{p.comment}</p>
+                  <p className={styles.ping_comment}>{p.comment}</p>
                 </div>
               </div>
             ))}
           </div>
 
           {/* 우측 하단 + 버튼 */}
-          <button className="fab" onClick={handleOpenSelect}>+</button>
+          <button className={styles.fab} onClick={handleOpenSelect}>+</button>
         </>
       ) : (
         <>
@@ -170,24 +170,24 @@ function PingGroup() {
             {allPings.map((p) => (
               <div key={p.id} className={styles.select_item}>
                 <div className={styles.select_info}>
-                  <span className="ping_name">{p.name}</span>
+                  <span className={styles.ping_name}>{p.name}</span>
                   <div className={styles.select_sub}>
-                    <span className="ping_price">{p.price.toLocaleString()}원</span>
+                    <span className={styles.ping_price}>{p.price.toLocaleString()}원</span>
                     <span className={styles.ping_category}>{p.category}</span>
                   </div>
                 </div>
                 <div
-                  className={`toggle ${selectedIds.includes(p.id) ? "toggle_on" : ""}`}
+                  className={`${styles.toggle} ${selectedIds.includes(p.id) ? styles.toggle_on : ""}`}
                   onClick={() => handleToggle(p.id)}
                 >
-                  <div className="toggle_circle" />
+                  <div className={styles.toggle_circle} />
                 </div>
               </div>
             ))}
           </div>
 
           {/* 뒤로가기 */}
-          <button className="fab" onClick={() => setShowSelect(false)}>←</button>
+          <button className={styles.fab} onClick={() => setShowSelect(false)}>←</button>
         </>
       )}
     </div>

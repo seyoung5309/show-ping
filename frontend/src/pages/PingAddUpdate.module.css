@@ -1,3 +1,7 @@
+button {
+    cursor: pointer;
+}
+
 input,
 select,
 textarea {
@@ -12,7 +16,41 @@ textarea::placeholder {
     font-size: var(--font-sm);
 }
 
-/* 공개 토글 + 삭제 */
+.page {
+    width: 100%;
+    max-width: 402px;
+    min-height: 100dvh;
+    padding: var(--page-padding-top) var(--page-padding-x) 100px;
+    box-sizing: border-box;
+    position: relative;
+    margin: 0 auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.logo_img {
+    width: clamp(80px, 27vw, 111px);
+    height: auto;
+    aspect-ratio: 111/43;
+    cursor: pointer;
+}
+
+.back_btn {
+    background: none;
+    border: none;
+    font-family: Pretendard;
+    font-size: var(--font-sm);
+    color: var(--color-text-sub);
+    padding: 0;
+    margin-bottom: 12px;
+    cursor: pointer;
+}
+
 .top_row {
     display: flex;
     justify-content: space-between;
@@ -25,6 +63,34 @@ textarea::placeholder {
     align-items: center;
     gap: 8px;
     cursor: pointer;
+}
+
+.toggle {
+    width: 36px;
+    height: 20px;
+    border-radius: 50px;
+    background: rgba(0, 0, 0, 0.2);
+    position: relative;
+    transition: background 0.2s;
+}
+
+.toggle_on {
+    background: var(--color-primary);
+}
+
+.toggle_circle {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #fff;
+    transition: left 0.2s;
+}
+
+.toggle_on .toggle_circle {
+    left: 18px;
 }
 
 .toggle_text {
@@ -41,7 +107,6 @@ textarea::placeholder {
     border: none;
 }
 
-/* 이미지 업로드 */
 .image_box {
     display: flex;
     align-items: center;
@@ -67,7 +132,6 @@ textarea::placeholder {
     color: var(--color-primary);
 }
 
-/* 입력 필드 */
 .field {
     margin-bottom: 16px;
 }
@@ -106,7 +170,6 @@ textarea::placeholder {
     box-sizing: border-box;
 }
 
-/* 사용자 정의 속성 */
 .property_row {
     display: flex;
     align-items: center;
@@ -157,7 +220,55 @@ textarea::placeholder {
     margin-top: 4px;
 }
 
-/* 모달 버튼 (PingAddUpdate만의 스타일) */
+.submit_wrap {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 402px;
+    padding: 16px var(--page-padding-x);
+    background: #fff;
+    box-sizing: border-box;
+}
+
+.submit_btn {
+    width: 100%;
+    height: 45px;
+    border-radius: 10px;
+    border: 1px solid var(--color-primary);
+    background: var(--color-light);
+    font-family: Pretendard;
+    font-size: var(--font-lg);
+    font-weight: 500;
+    color: var(--color-text);
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.modal {
+    width: min(306px, 90vw);
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+}
+
 .modal_btn {
     padding: 8px 24px;
     border-radius: 8px;
@@ -165,9 +276,4 @@ textarea::placeholder {
     background: var(--color-light);
     font-family: Pretendard;
     font-size: var(--font-sm);
-}
-
-/* 뒤로가기 margin 오버라이드 */
-.back_btn {
-    margin-bottom: 12px;
 }
