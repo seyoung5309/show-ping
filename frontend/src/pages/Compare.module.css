@@ -123,18 +123,6 @@ button {
     margin: 0 auto 6px auto;
 }
 
-.product_name {
-    font-family: Pretendard;
-    font-size: 12px;
-    font-weight: 600;
-    color: #000;
-    display: block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 80px;
-}
-
 /* 바디 행 */
 .td_label {
     padding: 16px 8px;

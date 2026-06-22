@@ -59,21 +59,30 @@ function Compare() {
       {/* 비교 테이블 */}
       <div className={styles.table_wrap}>
         <table className={styles.table}>
-          <thead>
+<thead>
+  <tr>
+    <th className={styles.th_label}></th>
+    {pings.map((p) => (
+      <th key={p.id} className={styles.th_product}>
+        {p.image
+          ? <img src={p.image} alt={p.name} className={styles.product_img} />
+          : <div className={styles.product_img_empty} />
+        }
+        {/* 상품명 여기서 제거 */}
+      </th>
+        ))}
+        </tr>
+        </thead>
+        <tbody>
+            {/* 상품명 행 추가 */}
             <tr>
-              <th className={styles.th_label}></th>
-              {pings.map((p) => (
-                <th key={p.id} className={styles.th_product}>
-                  {p.image
-                    ? <img src={p.image} alt={p.name} className={styles.product_img} />
-                    : <div className={styles.product_img_empty} />
-                  }
-                  <span className={styles.product_name}>{p.name}</span>
-                </th>
-              ))}
+                <td className={styles.td_label}>상품명</td>
+                {pings.map((p) => (
+                <td key={p.id} className={styles.td_value}>
+                    {p.name}
+                </td>
+                ))}
             </tr>
-          </thead>
-          <tbody>
             {/* 가격 */}
             <tr>
               <td className={styles.td_label}>가격</td>
