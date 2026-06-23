@@ -16,7 +16,6 @@ input::placeholder {
 
 .page {
     width: 100%;
-    max-width: 402px;
     min-height: 100dvh;
     padding: var(--page-padding-top) var(--page-padding-x) var(--page-padding-bottom);
     box-sizing: border-box;

@@ -24,7 +24,7 @@ function Hamburger() {
 
   const handleWithdraw = async () => {
     // 비밀번호 확인
-    const res = await fetch("http://localhost:3000/api/auth/check-password", {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/check-password`, {
         method: "POST",
         headers: {
         "Content-Type": "application/json",
