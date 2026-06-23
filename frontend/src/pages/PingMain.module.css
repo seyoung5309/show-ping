@@ -16,6 +16,8 @@ input::placeholder {
 
 .page {
     width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
     min-height: 100dvh;
     padding: var(--page-padding-top) var(--page-padding-x) var(--page-padding-bottom);
     box-sizing: border-box;
@@ -26,7 +28,7 @@ input::placeholder {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 24px;
+    margin-bottom: clamp(16px, 6vw, 28px);
 }
 
 .logo_img {
@@ -38,16 +40,16 @@ input::placeholder {
 
 .search_wrap {
     position: relative;
-    margin-bottom: 20px;
+    margin-bottom: clamp(14px, 5vw, 24px);
 }
 
 .search {
     width: 100%;
-    height: 35px;
+    height: clamp(32px, 8.7vw, 42px);
     border-radius: 50px;
     border: 2px solid var(--color-primary);
     background: white;
-    padding: 0 40px 0 16px;
+    padding: 0 clamp(32px, 10vw, 44px) 0 clamp(12px, 4vw, 18px);
     font-family: Pretendard;
     font-size: var(--font-sm);
     box-sizing: border-box;
@@ -55,18 +57,18 @@ input::placeholder {
 
 .search_icon {
     position: absolute;
-    right: 12px;
+    right: clamp(10px, 3vw, 14px);
     top: 50%;
     transform: translateY(-50%);
-    width: 14px;
-    height: 14px;
+    width: clamp(12px, 3.5vw, 16px);
+    height: clamp(12px, 3.5vw, 16px);
 }
 
 .group_wrap {
     display: flex;
-    gap: 12px;
+    gap: clamp(8px, 3vw, 14px);
     align-items: flex-start;
-    margin-bottom: 12px;
+    margin-bottom: clamp(8px, 3vw, 14px);
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
 }
@@ -80,9 +82,9 @@ input::placeholder {
 }
 
 .group_thumb {
-    width: 80px;
-    height: 50px;
-    border-radius: 10px;
+    width: clamp(64px, 19vw, 92px);
+    aspect-ratio: 8/5;
+    border-radius: clamp(8px, 2.5vw, 12px);
     border: 2px solid var(--color-primary);
     background: var(--color-light);
     overflow: hidden;
@@ -93,7 +95,7 @@ input::placeholder {
     height: 100%;
     object-fit: cover;
     object-position: center;
-    border-radius: 10px;
+    border-radius: clamp(8px, 2.5vw, 12px);
     cursor: pointer;
 }
 
@@ -105,31 +107,31 @@ input::placeholder {
 }
 
 .group_add {
-    width: 80px;
-    height: 50px;
-    border-radius: 10px;
+    width: clamp(64px, 19vw, 92px);
+    aspect-ratio: 8/5;
+    border-radius: clamp(8px, 2.5vw, 12px);
     border: 2px solid var(--color-primary);
     background: var(--color-light);
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--color-primary);
-    font-size: 24px;
+    font-size: clamp(20px, 6vw, 26px);
     font-weight: 500;
     cursor: pointer;
 }
 
 .group_name {
     font-family: Pretendard;
-    font-size: 11px;
+    font-size: clamp(10px, 2.8vw, 12px);
     color: var(--color-text);
     margin: 0;
     text-align: center;
 }
 
 .category_btn {
-    height: 28px;
-    padding: 0 16px;
+    height: clamp(26px, 7vw, 32px);
+    padding: 0 clamp(12px, 4vw, 18px);
     border-radius: 50px;
     border: 2px solid var(--color-primary);
     background: var(--color-bg);
@@ -142,12 +144,12 @@ input::placeholder {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 12px;
+    margin-bottom: clamp(8px, 3vw, 14px);
 }
 
 .sort_btn {
-    height: 28px;
-    padding: 0 12px;
+    height: clamp(26px, 7vw, 32px);
+    padding: 0 clamp(10px, 3vw, 16px);
     border-radius: 50px;
     border: 2px solid var(--color-primary);
     background: var(--color-bg);
@@ -160,11 +162,11 @@ input::placeholder {
 .ping_grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+    gap: clamp(8px, 3vw, 14px);
 }
 
 .ping_card {
-    border-radius: 10px;
+    border-radius: clamp(8px, 2.5vw, 12px);
     border: 2px solid var(--color-primary);
     overflow: hidden;
     cursor: pointer;
@@ -179,7 +181,7 @@ input::placeholder {
 }
 
 .ping_info {
-    padding: 8px 12px;
+    padding: clamp(6px, 2vw, 10px) clamp(10px, 3vw, 14px);
     background: #FDFDFD;
 }
 
@@ -187,7 +189,7 @@ input::placeholder {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 4px;
+    margin-bottom: clamp(3px, 1vw, 6px);
 }
 
 .ping_name {
@@ -221,8 +223,8 @@ input::placeholder {
 
 .fab_wrap {
     position: fixed;
-    bottom: 32px;
-    right: 32px;
+    bottom: clamp(20px, 8vw, 40px);
+    right: clamp(20px, 8vw, 40px);
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -232,8 +234,8 @@ input::placeholder {
 .fab_menu {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    margin-bottom: 4px;
+    gap: clamp(6px, 2vw, 10px);
+    margin-bottom: clamp(3px, 1vw, 6px);
     opacity: 0;
     transform: translateY(20px);
     pointer-events: none;
@@ -251,7 +253,7 @@ input::placeholder {
     border: 1px solid var(--color-primary);
     color: var(--color-primary);
     border-radius: 50px;
-    padding: 8px 16px;
+    padding: clamp(6px, 2vw, 10px) clamp(12px, 4vw, 18px);
     font-family: Pretendard;
     font-size: var(--font-sm);
     font-weight: 500;
@@ -260,13 +262,13 @@ input::placeholder {
 }
 
 .fab {
-    width: 52px;
-    height: 52px;
+    width: clamp(46px, 13vw, 60px);
+    height: clamp(46px, 13vw, 60px);
     border-radius: 50%;
     background: var(--color-primary);
     border: none;
     color: #fff;
-    font-size: 28px;
+    font-size: clamp(24px, 7vw, 30px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -274,8 +276,8 @@ input::placeholder {
 }
 
 .fab_icon {
-    width: 24px;
-    height: 24px;
+    width: clamp(20px, 6vw, 26px);
+    height: clamp(20px, 6vw, 26px);
 }
 
 .overlay {
@@ -292,13 +294,13 @@ input::placeholder {
 }
 
 .modal {
-    width: min(306px, 90vw);
+    width: clamp(280px, 90vw, 380px);
     background: #fff;
-    border-radius: 12px;
-    padding: 24px;
+    border-radius: clamp(10px, 3vw, 14px);
+    padding: clamp(18px, 6vw, 28px);
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: clamp(10px, 3vw, 14px);
 }
 
 .modal_title {
@@ -311,23 +313,23 @@ input::placeholder {
 
 .modal_input {
     width: 100%;
-    height: 40px;
+    height: clamp(36px, 10vw, 46px);
     border-radius: 8px;
     border: 1px solid rgba(0, 0, 0, 0.2);
     font-family: Pretendard;
     font-size: var(--font-sm);
-    padding: 0 12px;
+    padding: 0 clamp(10px, 3vw, 14px);
     box-sizing: border-box;
 }
 
 .modal_btns {
     display: flex;
     justify-content: flex-end;
-    gap: 8px;
+    gap: clamp(6px, 2vw, 10px);
 }
 
 .modal_btn_cancel {
-    padding: 8px 16px;
+    padding: clamp(6px, 2vw, 10px) clamp(12px, 4vw, 18px);
     border-radius: 8px;
     border: 1px solid rgba(0, 0, 0, 0.2);
     background: #fff;
@@ -336,7 +338,7 @@ input::placeholder {
 }
 
 .modal_btn_confirm {
-    padding: 8px 16px;
+    padding: clamp(6px, 2vw, 10px) clamp(12px, 4vw, 18px);
     border-radius: 8px;
     border: 1px solid var(--color-primary);
     background: var(--color-light);
@@ -347,13 +349,13 @@ input::placeholder {
 .category_list {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: clamp(6px, 2vw, 10px);
     max-height: 200px;
     overflow-y: auto;
 }
 
 .category_item {
-    padding: 6px 12px;
+    padding: clamp(5px, 1.5vw, 8px) clamp(10px, 3vw, 14px);
     border-radius: 50px;
     border: 1px solid var(--color-primary);
     background: var(--color-bg);
@@ -364,9 +366,9 @@ input::placeholder {
 
 .compare_btn {
     position: absolute;
-    top: 8px;
-    right: 8px;
-    padding: 4px 8px;
+    top: clamp(6px, 2vw, 10px);
+    right: clamp(6px, 2vw, 10px);
+    padding: clamp(3px, 1vw, 5px) clamp(6px, 2vw, 10px);
     border-radius: 50px;
     border: 1px solid var(--color-primary);
     background: rgba(255, 255, 255, 0.9);
