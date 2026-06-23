@@ -32,7 +32,8 @@ function App() {
             <Route path="/ping/update/:id" element={<PingAddUpdate />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/profile/:userId" element={<UserProfile />} />
-            <Route path="/set-first" element={<SetFirst />} />
+            <Route path="/set-first" element={<SetFirst 
+            />} />
             <Route path="/set-second" element={<SetSecond />} />
             <Route path="/friends" element={<Friends />} />
           </Routes>

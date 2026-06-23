@@ -21,7 +21,6 @@ input::placeholder {
     padding: var(--page-padding-top) var(--page-padding-x) var(--page-padding-bottom);
     box-sizing: border-box;
     position: relative;
-    margin: 0 auto;
 }
 
 .header {
