@@ -5,7 +5,7 @@
     --max-width: 402px;
     --page-padding-x: clamp(16px, 5vw, 21px);
     --page-padding-top: clamp(32px, 5vh, 46px);
-    --page-padding-bottom: 80px;
+    --page-padding-bottom: clamp(64px, 10vh, 96px);
 
     --font-xs: clamp(9px, 2.2vw, 10px);
     --font-sm: clamp(10px, 2.8vw, 12px);
@@ -54,7 +54,7 @@ button {
 
 .app_inner {
     width: 100%;
-    max-width: 402px;
+    max-width: var(--max-width);
     min-height: 100vh;
     background: #fff;
     border: 1px solid rgba(0, 0, 0, 0.1);
